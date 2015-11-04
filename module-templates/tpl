@@ -1,0 +1,7 @@
+<div class="content-padded">
+  <h1>{{title}}</h1>
+  <p>
+    {{text}}
+  </p>
+  <div class='aaa'></div>
+</div>

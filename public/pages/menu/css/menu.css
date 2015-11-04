@@ -1,0 +1,33 @@
+.sidemenu {
+  width: 80%;
+  height: 100vh;
+  color: white;
+  padding-top: 20px;
+  background: transparent url('../img/bgm.jpg') no-repeat;
+  background-size: cover
+}
+
+.sidemenu h1,
+.sidemenu h2,
+.sidemenu h3 {
+  text-align: center
+}
+
+.sidemenu .table-view {
+  background-color: transparent
+}
+
+.sidemenu .table-view .table-view-cell {
+}
+
+.sidemenu .table-view li.table-view-cell:hover {
+  background-color: transparent
+}
+
+.sidemenu .table-view-cell > a:not(.btn):active {
+  background-color: transparent
+}
+
+.sidemenu .navigate-right:after {
+  color: white
+}

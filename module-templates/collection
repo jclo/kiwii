@@ -1,0 +1,17 @@
+/* global */
+/* eslint */
+'use strict';
+
+// -- Vendor modules
+
+// -- Project Modules
+var @#Class#@Model = require('./models/@#Class#@Model.js')
+  ;
+
+// -- Variables
+
+// -- Main section
+module.exports = Backbone.Collection.extend({
+  url: '',
+  model: @#Class#@Model
+});

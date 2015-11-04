@@ -1,0 +1,94 @@
+{
+  "name": "kiwii",
+  "version": "0.1.0",
+  "description": "Kiwii is a lightweight HTML5 Hybrid Mobile App framework.",
+  "main": "index.js",
+  "bin": {
+    "kiwii": "./bin/kiwii.js"
+  },
+  "scripts": {
+    "build_dist": "gulp build",
+    "update_dist": "gulp watch",
+    "browser": "kiwii run browser",
+    "postinstall": "bower install",
+    "build": "BROWSERIFYSWAP_ENV='dist' browserify public/js/app.js -o public/js/wapp.js -d --exclude jquery",
+    "watch": "BROWSERIFYSWAP_ENV='dist' watchify public/js/app.js -o public/js/wapp.js -dv --exclude jquery"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jclo/kiwii.git"
+  },
+  "keywords": [
+    "backbone"
+  ],
+  "author": "jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jclo/kiwii/issues"
+  },
+  "homepage": "https://github.com/jclo/kiwii",
+  "dependencies": {
+    "backbone": "1.2.3",
+    "backbone.radio": "1.0.2",
+    "font-awesome": "4.4.0",
+    "handlebars": "4.0.3",
+    "lodash": "3.10.1"
+  },
+  "devDependencies": {
+    "babelify": "6.3.0",
+    "bower": "1.6.3",
+    "browserify": "11.2.0",
+    "browserify-shim": "3.8.10",
+    "browserify-swap": "0.2.2",
+    "del": "2.0.2",
+    "express": "4.13.3",
+    "ghooks": "0.3.2",
+    "gulp": "3.9.0",
+    "gulp-concat": "2.6.0",
+    "gulp-header": "1.7.1",
+    "gulp-minify-css": "1.2.1",
+    "gulp-rename": "1.2.2",
+    "gulp-replace": "0.5.4",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-uglify": "1.4.2",
+    "gulp-util": "3.0.6",
+    "hbsfy": "2.4.1",
+    "nopt": "3.0.4",
+    "open": "0.0.5",
+    "path": "0.12.7",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.4.0"
+  },
+  "browser": {
+    "zepto": "./bower_components/zepto/zepto.min.js",
+    "ratchet": "./bower_components/ratchet/dist/js/ratchet.js"
+  },
+  "browserify-shim": {
+    "zepto": "$",
+    "ratchet": {
+      "exports": "Ratchet"
+    }
+  },
+  "browserify-swap": {
+    "@packages": [
+      "underscore"
+    ],
+    "dist": {
+      "underscore.js$": "lodash"
+    }
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "browserify-shim",
+      "browserify-swap",
+      "hbsfy"
+    ]
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run build"
+    }
+  }
+}

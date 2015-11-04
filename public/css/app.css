@@ -1,0 +1,9 @@
+.right {
+  -webkit-transform: translate3d(80%, 0, 0);
+  transform: translate3d(80%, 0, 0);
+}
+
+header, .content, footer {
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+}

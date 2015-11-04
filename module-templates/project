@@ -1,0 +1,38 @@
+/* global */
+/* eslint */
+'use strict';
+
+// -- Vendor modules
+
+// -- Project Modules
+var @#Class#@View = require('./views/@#project#@View.js')
+  , log = require('../../lib/logger.js')
+  ;
+
+// -- Variables
+var level = require('../../js/config.js').level
+  ;
+
+// -- Main section
+var @#Class#@ = function() {
+  //
+};
+
+// Methods
+@#Class#@.prototype = {
+
+  // Initializes the module.
+  init: function() {
+    // Creates the module view.
+    this.@#project#@ = new @#Class#@View();
+    log.init('@#project#@', level, false);
+    log.trace('Created view...');
+  },
+
+  // Stops the module.
+  destroy: function() {
+    // stuff here.
+  }
+};
+
+module.exports = @#Class#@;

@@ -1,0 +1,50 @@
+.weather {
+  height: 100vh;
+}
+
+.weather .condition {
+  display: block;
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  text-align: center
+}
+
+.weather .condition .icon {
+  font-size: 3em
+}
+
+.weather .condition .text {
+  padding-top: 10px
+}
+
+.weather .temperature {
+  display: block;
+  position: absolute;
+  top: 180px;
+  width: 100%;
+  font-size: 7em;
+  font-weight: 100;
+  text-align: center
+}
+
+.weather .measures {
+  display: block;
+  position: absolute;
+  top: 400px;
+  width: 100%;
+  font-size: 1.1em;
+  text-align: center
+}
+
+.weather .measures .humidity {
+  padding: 0 10px
+}
+
+.weather .measures .pressure {
+  padding: 0 10px
+}
+
+.weather .measures .wind {
+  padding: 0 10px
+}
