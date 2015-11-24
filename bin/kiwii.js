@@ -66,6 +66,50 @@ var baseapp        = process.cwd()
   , parsed = nopt(opts, shortOpts, process.argv, 2)
   ;
 
+// -- Templates
+var readme = [
+  '# MyApp',
+  ' ',
+  'Bla bla ...',
+  ' ',
+  '## License',
+  ' ',
+  'MIT.',
+  ''].join('\n');
+
+var license = [
+  'The MIT License (MIT)',
+  '',
+  'Copyright (c) 2015 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
+  '',
+  'Permission is hereby granted, free of charge, to any person obtaining a copy',
+  'of this software and associated documentation files (the "Software"), to deal',
+  'in the Software without restriction, including without limitation the rights',
+  'to use, copy, modify, merge, publish, distribute, sublicense, and/or sell',
+  'copies of the Software, and to permit persons to whom the Software is',
+  'furnished to do so, subject to the following conditions:',
+  '',
+  'The above copyright notice and this permission notice shall be included in',
+  'all copies or substantial portions of the Software.',
+  '',
+  'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR',
+  'IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,',
+  'FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE',
+  'AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER',
+  'LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,',
+  'OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN',
+  'THE SOFTWARE.',
+  ''].join('\n');
+
+var changelog = [
+  '### HEAD',
+  '',
+  '',
+  '### 0.1.0 (Month Day, Year)',
+  '',
+  '  * Initial build.',
+  ''].join('\n');
+
 // -- Private functions
 
 /**
@@ -73,8 +117,8 @@ var baseapp        = process.cwd()
  *
  * @function (files)
  * @private
- * @param {Array}     An array of files,
- * @returns {Array}   Returns the filtered array,
+ * @param {Array}     an array of files,
+ * @returns {Array}   returns the filtered array,
  */
 function _filter(files) {
   var filtered
@@ -92,10 +136,10 @@ function _filter(files) {
 /**
  * Copies source file to destination.
  *
- * @function (source, dest)
+ * @function (arg1, arg2)
  * @private
- * @param {String}    The source file,
- * @param {String}    The destination file,
+ * @param {String}    the source file,
+ * @param {String}    the destination file,
  * @returns {}        -,
  */
 function _copyFile(source, dest) {
@@ -105,10 +149,10 @@ function _copyFile(source, dest) {
 /**
  * Recursively copies source to destination.
  *
- * @function (source, dest)
+ * @function (arg1, arg2)
  * @private
- * @param {String}    The source foler/file,
- * @param {String}    The destination folder/file,
+ * @param {String}    the source folder/file,
+ * @param {String}    the destination folder/file,
  * @returns {}        -,
  */
 function _copyRecursiveSync(source, dest) {
@@ -136,9 +180,11 @@ function _copyRecursiveSync(source, dest) {
 /**
  * Removes kiwii dependencies to package.json and bower.json
  *
- * @function (base)
+ * @function (arg1, arg2, arg3)
  * @private
- * @param {String}    The root path of the web app,
+ * @param {String}    The root path of Kiwii,
+ * @param {String}    The root path of web app,
+ * @param {String}    The name of the web app,
  * @returns {}        -,
  */
 function _customizeApp(basekiwii, baseapp, app) {
@@ -155,19 +201,19 @@ function _customizeApp(basekiwii, baseapp, app) {
   });
 
   obj = JSON.parse(json);
-  obj.name = app;
+  obj.name = app.toLowerCase();
   obj.version = '0.0.0';
   obj.description = app + ' ...';
-  obj.bin = {};
-  obj.repository.url = '';
-  obj.keywords = [];
-  obj.author = '';
-  obj.bugs.url = '';
-  obj.homepage = '';
+  obj.repository.url = 'https://github.com/author/libname.git';
+  obj.keywords = ['to be filled'];
+  obj.author = 'John Doe <jdo@johndoe.com> (http://www.johndoe.com)';
+  obj.bugs.url = 'https://github.com/author/libname/issues';
+  obj.homepage = 'https://github.com/author/libname';
+  delete obj.bin;
   delete obj.devDependencies.express;
   delete obj.devDependencies.nopt;
   delete obj.devDependencies.path;
-  delete obj.devDependencies.path;
+  delete obj.devDependencies.open;
 
   console.log('  ' + npm);
   fs.writeFileSync(path.join(baseapp, npm), JSON.stringify(obj, null, 2));
@@ -179,11 +225,11 @@ function _customizeApp(basekiwii, baseapp, app) {
   });
 
   obj = JSON.parse(json);
-  obj.name = app;
+  obj.name = app.toLowerCase();
   obj.description = app + ' ...';
-  obj.authors = [];
-  obj.keywords = [];
-  obj.homepage = '';
+  obj.authors = ['John Doe <jdo@johndoe.com> (http://www.johndoe.com)'];
+  obj.keywords = ['to be filled'];
+  obj.homepage = 'https://github.com/author/libname';
 
   console.log('  ' + npm);
   fs.writeFileSync(path.join(baseapp, bower), JSON.stringify(obj, null, 2));
@@ -194,9 +240,9 @@ function _customizeApp(basekiwii, baseapp, app) {
  *
  * @function (arg1, arg2)
  * @private
- * @param {String}  the base path,
- * @param {String}  the module name,
- * @returns {}      -,
+ * @param {String}    the base path,
+ * @param {String}    the module name,
+ * @returns {}        -,
  */
 function _createTree(base, project) {
   var arr,
@@ -227,9 +273,9 @@ function _createTree(base, project) {
  *
  * @function (arg1, arg2)
  * @private
- * @param {String}  the base path,
- * @param {String}  the module name,
- * @returns {}      -,
+ * @param {String}    the base path,
+ * @param {String}    the module name,
+ * @returns {}        -,
  */
 function _createEmptyProject(base, project) {
   var i;
@@ -248,9 +294,9 @@ function _createEmptyProject(base, project) {
  *
  * @function (arg1, arg2)
  * @private
- * @param {String}  the base path,
- * @param {String}  the module name,
- * @returns {}      -,
+ * @param {String}    the base path,
+ * @param {String}    the module name,
+ * @returns {}        -,
  */
 function _fillProject(base, project) {
   var className = project.substr(0, 1).toUpperCase() + project.substr(1),
@@ -310,9 +356,9 @@ function _fillProject(base, project) {
  *
  * @function (arg1, arg2)
  * @private
- * @param {String}  the base path,
- * @param {String}  the module name,
- * @returns {}      -,
+ * @param {String}    the base path,
+ * @param {String}    the module name,
+ * @returns {}        -,
  */
 function _updateCollection(base, project) {
   var cmd;
@@ -338,9 +384,9 @@ function _updateCollection(base, project) {
  *
  * @function (arg1, arg2)
  * @private
- * @param {String}  the base path,
- * @param {String}  the module name,
- * @returns {}      -,
+ * @param {String}    the base path,
+ * @param {String}    the module name,
+ * @returns {}        -,
  */
 function _deleteCollection(base, project) {
   var files,
@@ -390,15 +436,14 @@ function _help() {
 /**
  * Creates and populates the web app.
  *
- * @function (opts)
+ * @function (arg1)
  * @private
- * @param {Object}  the command line options,
- * @returns {}      -,
+ * @param {Object}    the command line options,
+ * @returns {}        -,
  */
 function _populate(opts) {
   var app = opts.name || 'myApp'
     , files
-    , i
     ;
 
   // Check that the folder app is empty.
@@ -409,39 +454,38 @@ function _populate(opts) {
     process.exit(1);
   }
 
-  // Ok. Populate it.
-  console.log('Populates folder with:');
+  // Create README.md, LICENSE.md and CHANGELOG.md.
+  console.log('  ' + 'README.md');
+  fs.writeFileSync(path.join(baseapp, 'README.md'), readme);
+  console.log('  ' + 'LICENSE.md');
+  fs.writeFileSync(path.join(baseapp, 'LICENSE.md'), license);
+  console.log('  ' + 'CHANGELOG.md');
+  fs.writeFileSync(path.join(baseapp, 'CHANGELOG.md'), changelog);
 
-  // Populate the project with the content of project-template.
-  files = _filter(fs.readdirSync(path.join(basekiwii, projectcontent)));
-  for (i = 0; i < files.length; i++){
-    console.log('  ' + files[i]);
-    _copyFile(path.join(basekiwii, projectcontent, files[i]), path.join(baseapp, files[i]));
-  }
-
-  // Add .eslintrc and .gitignore
+  // Add gulpfile.js, .eslintrc and .gitignore.
+  console.log('  ' + 'gulpfile.js');
+  _copyFile(path.join(basekiwii, 'gulpfile.js'), path.join(baseapp, 'gulpfile.js'));
   console.log('  ' + '.eslintrc');
   _copyFile(path.join(basekiwii, '.eslintrc'), path.join(baseapp, '.eslintrc'));
   console.log('  ' + '.gitignore');
   _copyFile(path.join(basekiwii, '.gitignore'), path.join(baseapp, '.gitignore'));
 
-  // Add package.json and bower.json and remove kiwii dependencies.
+  // Add package.json and bower.json but first remove kiwii dependencies.
   _customizeApp(basekiwii, baseapp, app);
 
-  // Create and fill public.
+  // Create and fill the public folder.
   console.log('Fills the web app skeleton:');
   _copyRecursiveSync(path.join(basekiwii, publickiwii), path.join(baseapp, publicapp));
   console.log('Done. Enjoy!');
-
 }
 
 /**
  * Adds the skeleton of a new module.
  *
- * @function (opts)
+ * @function (arg1)
  * @private
- * @param {Object}  the command line options,
- * @returns {}      -,
+ * @param {Object}    the command line options,
+ * @returns {}        -,
  */
 function _add(opts) {
   var base,
@@ -474,10 +518,10 @@ function _add(opts) {
 /**
  * Starts an HTTP server and opens the browser.
  *
- * @function (opts)
+ * @function ()
  * @private
- * @param {}        -,
- * @returns {}      -,
+ * @param {}          -,
+ * @returns {}        -,
  */
 function _run() {
   var app = express()

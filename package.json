@@ -1,6 +1,6 @@
 {
   "name": "kiwii",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kiwii is a lightweight HTML5 Hybrid Mobile App framework.",
   "main": "index.js",
   "bin": {
@@ -19,7 +19,7 @@
     "url": "https://github.com/jclo/kiwii.git"
   },
   "keywords": [
-    "backbone"
+    "hybrid mobile", "template", "cordova", "backbone", "es6", "babel", "browserify", "ios"
   ],
   "author": "jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr/)",
   "license": "MIT",
@@ -31,18 +31,18 @@
     "backbone": "1.2.3",
     "backbone.radio": "1.0.2",
     "font-awesome": "4.4.0",
-    "handlebars": "4.0.3",
+    "handlebars": "4.0.5",
     "lodash": "3.10.1"
   },
   "devDependencies": {
     "babelify": "6.3.0",
-    "bower": "1.6.3",
+    "bower": "1.6.5",
     "browserify": "11.2.0",
-    "browserify-shim": "3.8.10",
+    "browserify-shim": "3.8.11",
     "browserify-swap": "0.2.2",
-    "del": "2.0.2",
+    "del": "2.1.0",
     "express": "4.13.3",
-    "ghooks": "0.3.2",
+    "ghooks": "1.0.1",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
     "gulp-header": "1.7.1",
@@ -50,15 +50,15 @@
     "gulp-rename": "1.2.2",
     "gulp-replace": "0.5.4",
     "gulp-sourcemaps": "1.6.0",
-    "gulp-uglify": "1.4.2",
-    "gulp-util": "3.0.6",
+    "gulp-uglify": "1.5.1",
+    "gulp-util": "3.0.7",
     "hbsfy": "2.4.1",
-    "nopt": "3.0.4",
+    "nopt": "3.0.6",
     "open": "0.0.5",
     "path": "0.12.7",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",
-    "watchify": "3.4.0"
+    "watchify": "3.6.1"
   },
   "browser": {
     "zepto": "./bower_components/zepto/zepto.min.js",
