@@ -1,8 +1,8 @@
 /* ****************************************************************************
-* Logger v0.0.1
+* Logger v0.0.2
 *
 * Logger is a minimal lightweight logging for JavaScript.
-* Copyright (c) 2014-2015 Artelsys (www.artelsys.com).
+* Copyright (c) 2014-2016 Artelsys (www.artelsys.com).
 * Released under the MIT license. You may obtain a copy of the License'
 * at: http://www.opensource.org/licenses/mit-license.php).
 * ****************************************************************************/
