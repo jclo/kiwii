@@ -80,7 +80,7 @@ var readme = [
 var license = [
   'The MIT License (MIT)',
   '',
-  'Copyright (c) 2015 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
+  'Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
   '',
   'Permission is hereby granted, free of charge, to any person obtaining a copy',
   'of this software and associated documentation files (the "Software"), to deal',
@@ -462,13 +462,14 @@ function _populate(opts) {
   console.log('  ' + 'CHANGELOG.md');
   fs.writeFileSync(path.join(baseapp, 'CHANGELOG.md'), changelog);
 
-  // Add gulpfile.js, .eslintrc and .gitignore.
+  // Add gulpfile.js, .eslintrc and create an empty .gitignore.
   console.log('  ' + 'gulpfile.js');
   _copyFile(path.join(basekiwii, 'gulpfile.js'), path.join(baseapp, 'gulpfile.js'));
   console.log('  ' + '.eslintrc');
   _copyFile(path.join(basekiwii, '.eslintrc'), path.join(baseapp, '.eslintrc'));
   console.log('  ' + '.gitignore');
-  _copyFile(path.join(basekiwii, '.gitignore'), path.join(baseapp, '.gitignore'));
+  //_copyFile(path.join(basekiwii, '.gitignore'), path.join(baseapp, '.gitignore'));
+  fs.closeSync(fs.openSync('.gitignore', 'w'));
 
   // Add package.json and bower.json but first remove kiwii dependencies.
   _customizeApp(basekiwii, baseapp, app);
