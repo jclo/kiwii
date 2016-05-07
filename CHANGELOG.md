@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.1.5 (May 7, 2016)
+
+  * Updated the dependencies.
+
+
 ### 0.1.4 (February 5, 2016)
 
   * Moved bower, express, nopt and open to the dependency group in package.json.

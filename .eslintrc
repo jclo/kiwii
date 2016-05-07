@@ -2,8 +2,11 @@
   /**
    * Set JavaScript language options
    */
-  "ecmaFeatures": {
-    "modules": true
+    "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+    },
   },
   /**
    * Set Environnement
@@ -23,7 +26,7 @@
   /**
    * Set rules
    */
-  "extends": "eslint:recommended", 
+  "extends": "eslint:recommended",
   "rules": {
     // Danger
     eqeqeq: 2,
@@ -40,8 +43,7 @@
     "no-trailing-spaces": 2,
     "no-multi-spaces": [2, { exceptions: { "VariableDeclarator": true } }],
     "key-spacing": [2, { align: "value" }],
-    "space-after-keywords": 2,
-    "space-return-throw-case": 2,
+    "keyword-spacing": [2, {"before": true, "after": true, "overrides": {}}],
     "space-in-parens": [2, "never"],
     "space-infix-ops": 2,
     // Legacy
