@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.2.1 (December 10, 2016)
+
+  * Updated Babel and Gulp Clean CSS modules.
+
+
 ### 0.2.0 (December 9, 2016)
 
   * Updated the dependencies,
