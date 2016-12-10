@@ -1,23 +1,22 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var Radio = require('backbone.radio')
-  ;
+const Radio = require('backbone.radio')
+    ;
 
 // -- Project Modules
-var HeaderView = require('./views/headerView.js')
-  , log = require('../../lib/logger.js')
-  ;
+const HeaderView = require('./views/headerView.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  , mainc = Radio.channel('mainc')
-  ;
+const level = require('../../js/config.js').level
+    , mainc = Radio.channel('mainc')
+    ;
 
 // -- Main section
-var Header = function() {
+const Header = function() {
   //
 };
 
@@ -25,7 +24,7 @@ var Header = function() {
 Header.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Create Module View
     this.header = new HeaderView(mainc);
     log.init('header', level, false);
@@ -33,9 +32,9 @@ Header.prototype = {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Header;

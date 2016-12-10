@@ -1,12 +1,11 @@
 /* global */
 /* eslint */
-'use strict';
 
 // -- Vendor modules
 
 // -- Project Modules
-var @#Class#@Model = require('./models/@#Class#@Model.js')
-  ;
+const @#Class#@Model = require('./models/@#Class#@Model.js')
+    ;
 
 // -- Variables
 

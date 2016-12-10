@@ -1,30 +1,35 @@
 /* global StatusBar */
-/* eslint */
+/* eslint no-new: 0 */
 
 // -- Vendor modules
-import $ from 'zepto';
 import Backbone from 'backbone';
+/* eslint-disable import/no-extraneous-dependencies, no-unused-vars,
+  import/no-unresolved, import/extensions */
+import $ from 'zepto';
 // Even if ratchet.js is a IIFE, we need ot define it here otherwise
 // it isn't browserified with the other js files.
-import Ratchet from 'ratchet';
-
-//Backbone’s jQuery reference needs to be set.
-Backbone.$ = $;
+import Ratchet from 'ratchet.js';
+/* eslint-enable import/no-extraneous-dependencies, no-unused-vars,
+  import/no-unresolved, import/extensions */
 
 // -- Project Modules
-import Router from './router.js';
-import log from '../lib/logger.js';
-import Config from './config.js';
+import Router from './router';
+import log from '../lib/logger';
+import Config from './config';
+
+// Backbone’s jQuery reference needs to be set.
+Backbone.$ = $;
 
 // -- Variables
-var level = Config.level
-  ;
+const level = Config.level
+    ;
 
 // -- Main section
 
 // Set IOS Status Bar to light (require plugin cordova-plugin-statusbar).
-if (typeof StatusBar !== 'undefined')
+if (typeof StatusBar !== 'undefined') {
   StatusBar.styleLightContent();
+}
 
 // Start Backbone.
 new Router();

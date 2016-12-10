@@ -1,24 +1,23 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var Radio = require('backbone.radio')
-  ;
+const Radio = require('backbone.radio')
+    ;
 
 // -- Project Modules
-var WeatherView  = require('./views/weatherView.js')
-  , WeatherModel = require('./models/weatherModel.js')
-  , log          = require('../../lib/logger.js')
-  ;
+const WeatherView  = require('./views/weatherView.js')
+    , WeatherModel = require('./models/weatherModel.js')
+    , log          = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  , mainc = Radio.channel('mainc')
-  ;
+const level = require('../../js/config.js').level
+    , mainc = Radio.channel('mainc')
+    ;
 
 // -- Main section
-var Weather = function() {
+const Weather = function() {
   //
 };
 
@@ -26,18 +25,18 @@ var Weather = function() {
 Weather.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module model and view.
-    var model = new WeatherModel();
-    this.weather = new WeatherView({ model: model, mailbox: mainc });
+    const model = new WeatherModel();
+    this.weather = new WeatherView({ model, mailbox: mainc });
     log.init('weather', level, false);
     log.trace('Created model & view...');
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Weather;

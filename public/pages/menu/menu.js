@@ -1,20 +1,19 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
 
 // -- Project Modules
-var MenuView = require('./views/menuView.js')
-  , log = require('../../lib/logger.js')
-  ;
+const MenuView = require('./views/menuView.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  ;
+const level = require('../../js/config.js').level
+    ;
 
 // -- Main section
-var Menu = function() {
+const Menu = function() {
   //
 };
 
@@ -22,7 +21,7 @@ var Menu = function() {
 Menu.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module view.
     this.menu = new MenuView();
     log.init('menu', level, false);
@@ -30,9 +29,9 @@ Menu.prototype = {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Menu;

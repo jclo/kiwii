@@ -1,20 +1,21 @@
 /* global */
-/* eslint max-len: [1, 110, 2] */
-'use strict';
+/* eslint one-var: 0, no-underscore-dangle: 0, max-len: [1, 110, 2] */
 
 // -- Vendor modules
-var $        = require('zepto')
-  , Backbone = require('backbone')
-  , _        = require('lodash')
-  ;
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
+const $        = require('zepto')
+    , Backbone = require('backbone')
+    , _        = require('lodash')
+    ;
+/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
 
 // -- Project Modules
-var template = require('../templates/weather.hbs')
-  ;
+const template = require('../templates/weather.hbs')
+    ;
 
 // -- Variables
 // Eiffel Tower Live Web Cam (tps = current time in seconds from 1970).
-var eiffelurl = 'http://www.parisapartment7eme.com/image_r.jpg?tps=';
+const eiffelurl = 'http://www.parisapartment7eme.com/image_r.jpg?tps=';
 
 // -- Main section
 module.exports = Backbone.View.extend({
@@ -23,7 +24,7 @@ module.exports = Backbone.View.extend({
   events: {
   },
 
-  initialize: function(opt) {
+  initialize(opt) {
     // Fixes loss of context for 'this' within methods.
     _.bindAll(this, 'render');
     // Not all views are self-rendering. This one is.
@@ -32,44 +33,49 @@ module.exports = Backbone.View.extend({
     opt.mailbox.trigger('header:title', 'Weather');
   },
 
-  render: function() {
-    var _this = this
+  render() {
+    const _this = this
       ;
 
     // Get Yahoo data then render.
     this.model.fetch({
-      success: function() {
-        var date     = new Date()
-          , time     = date.getTime()
-          , code     = _this.model.attributes.query.results.channel.item.condition.code
-          , text     = _this.model.attributes.query.results.channel.item.condition.text
-          , tempF    = _this.model.attributes.query.results.channel.item.condition.temp
-          , tempC    = parseInt((tempF - 32) / (9 / 5), 10)
-          , humidity = _this.model.attributes.query.results.channel.atmosphere.humidity
-          , pressure = _this.model.attributes.query.results.channel.atmosphere.pressure * 3376.85 / 100
-          , wind     = parseInt(_this.model.attributes.query.results.channel.wind.speed * 1.609344, 10)
-          ;
+      success() {
+        const date     = new Date()
+            , time     = date.getTime()
+            , code     = _this.model.attributes.query.results.channel.item.condition.code
+            , text     = _this.model.attributes.query.results.channel.item.condition.text
+            , tempF    = _this.model.attributes.query.results.channel.item.condition.temp
+            , tempC    = parseInt((tempF - 32) / (9 / 5), 10)
+            , humidity = _this.model.attributes.query.results.channel.atmosphere.humidity
+            , pressure = (_this.model.attributes.query.results.channel.atmosphere.pressure * 3376.85) / 100
+            , wind     = parseInt(_this.model.attributes.query.results.channel.wind.speed * 1.609344, 10)
+            ;
 
         // Update view.
         $(_this.el).html(template({
-          url:         eiffelurl + time,
-          icon:        _this._getIcon(code),
+          url: eiffelurl + time,
+          icon: _this._getIcon(code),
           description: text,
-          temperature: tempC + '°C',
-          humidity:    ' ' + humidity,
-          pressure:    ' ' + pressure.toFixed(1) + ' hPa',
-          wind:        ' ' + wind + ' km/h',
-          color:       _this._getColor()
+          // temperature: tempC + '°C',
+          // humidity: ' ' + humidity,
+          // pressure: ' ' + pressure.toFixed(1) + ' hPa',
+          // wind: ' ' + wind + ' km/h',
+          temperature: `${tempC}°C`,
+          humidity: ` ${humidity}`,
+          pressure: ` ${pressure.toFixed(1)} hPa`,
+          wind: ` ${wind} km/h`,
+          color: _this._getColor(),
         }));
       },
-      error: function() {
+      error() {
         // No stuff.
-      }
+      },
     });
   },
 
-  _getIcon: function(code) {
-    var yahoocode = {
+  _getIcon(code) {
+    /* eslint-disable key-spacing */
+    const yahoocode = {
       0:  'wi-tornado',                // tornado
       1:  'wi-thunderstorm',           // tropical storm
       2:  '',       // hurricane
@@ -117,20 +123,20 @@ module.exports = Backbone.View.extend({
       44: 'wi-day-cloudy-high',        // partly cloudy
       45: '',       //  thundershowers
       46: '',       //  snow showers
-      47: ''        //  isolated thundershowers
+      47: '',       //  isolated thundershowers
       // 3200: '',  //  not available
     };
+    /* eslint-enable key-spacing */
     return yahoocode[code];
   },
 
   _getColor() {
     // This could be more accurate by using sunrise and sunset.
     // (query.results.channel.astronomy).
-    var d = new Date();
-    if (d.getHours() >= 8 && d.getHours() <= 18)
+    const d = new Date();
+    if (d.getHours() >= 8 && d.getHours() <= 18) {
       return 'yellow';
-    else
-      return 'white';
-  }
-
+    }
+    return 'white';
+  },
 });

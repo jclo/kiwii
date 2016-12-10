@@ -1,20 +1,19 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
 
 // -- Project Modules
-var @#Class#@View = require('./views/@#project#@View.js')
-  , log = require('../../lib/logger.js')
-  ;
+const @#Class#@View = require('./views/@#project#@View.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  ;
+const level = require('../../js/config.js').level
+    ;
 
 // -- Main section
-var @#Class#@ = function() {
+const @#Class#@ = function() {
   //
 };
 
@@ -22,7 +21,7 @@ var @#Class#@ = function() {
 @#Class#@.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module view.
     this.@#project#@ = new @#Class#@View();
     log.init('@#project#@', level, false);
@@ -30,9 +29,9 @@ var @#Class#@ = function() {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = @#Class#@;

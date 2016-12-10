@@ -1,6 +1,5 @@
 /* global */
 /* eslint */
-'use strict';
 
 // -- Vendor modules
 
@@ -10,14 +9,13 @@
 
 // -- Main section
 module.exports = Backbone.Model.extend({
-  urlRoot:  '',
+  urlRoot: '',
   defaults: {
-    id:  '',
-    xxx: ''
+    id: '',
+    xxx: '',
   },
 
-  initialize: function() {
+  initialize() {
     // stuff here.
-  }
-
+  },
 });

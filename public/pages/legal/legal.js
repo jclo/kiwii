@@ -1,23 +1,22 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var Radio = require('backbone.radio')
-  ;
+const Radio = require('backbone.radio')
+    ;
 
 // -- Project Modules
-var LegalView = require('./views/legalView.js')
-  , log = require('../../lib/logger.js')
-  ;
+const LegalView = require('./views/legalView.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  , mainc = Radio.channel('mainc')
-  ;
+const level = require('../../js/config.js').level
+    , mainc = Radio.channel('mainc')
+    ;
 
 // -- Main section
-var Legal = function() {
+const Legal = function() {
   //
 };
 
@@ -25,7 +24,7 @@ var Legal = function() {
 Legal.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module view.
     this.legal = new LegalView(mainc);
     log.init('legal', level, false);
@@ -33,9 +32,9 @@ Legal.prototype = {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Legal;

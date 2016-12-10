@@ -1,23 +1,22 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var Radio = require('backbone.radio')
-  ;
+const Radio = require('backbone.radio')
+    ;
 
 // -- Project Modules
-var HomeView = require('./views/homeView.js')
-  , log      = require('../../lib/logger.js')
-  ;
+const HomeView = require('./views/homeView.js')
+    , log      = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  , mainc = Radio.channel('mainc')
-  ;
+const level = require('../../js/config.js').level
+    , mainc = Radio.channel('mainc')
+    ;
 
 // -- Main section
-var Home = function() {
+const Home = function() {
   //
 };
 
@@ -25,7 +24,7 @@ var Home = function() {
 Home.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module view.
     this.home = new HomeView(mainc);
     log.init('home', level, false);
@@ -33,9 +32,9 @@ Home.prototype = {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Home;

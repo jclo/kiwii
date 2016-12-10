@@ -1,16 +1,17 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var $        = require('zepto')
-  , Backbone = require('backbone')
-  , _        = require('lodash')
-  ;
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
+const $        = require('zepto')
+    , Backbone = require('backbone')
+    , _        = require('lodash')
+    ;
+/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
 
 // -- Project Modules
-var template = require('../templates/home.hbs')
-  ;
+const template = require('../templates/home.hbs')
+    ;
 
 // -- Variables
 
@@ -21,7 +22,7 @@ module.exports = Backbone.View.extend({
   events: {
   },
 
-  initialize: function(mailbox) {
+  initialize(mailbox) {
     // Fixes loss of context for 'this' within methods.
     _.bindAll(this, 'render');
     // Not all views are self-rendering. This one is.
@@ -30,9 +31,8 @@ module.exports = Backbone.View.extend({
     mailbox.trigger('header:title', 'Home');
   },
 
-  render: function() {
+  render() {
     // Prints the Handlebars template.
     $(this.el).html(template({ title: '...' }));
-  }
-
+  },
 });

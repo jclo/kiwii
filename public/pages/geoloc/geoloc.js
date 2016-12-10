@@ -1,23 +1,22 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var Radio = require('backbone.radio')
-  ;
+const Radio = require('backbone.radio')
+    ;
 
 // -- Project Modules
-var GeolocView = require('./views/geolocView.js')
-  , log = require('../../lib/logger.js')
-  ;
+const GeolocView = require('./views/geolocView.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  , mainc = Radio.channel('mainc')
-  ;
+const level = require('../../js/config.js').level
+    , mainc = Radio.channel('mainc')
+    ;
 
 // -- Main section
-var Geoloc = function() {
+const Geoloc = function() {
   //
 };
 
@@ -25,24 +24,24 @@ var Geoloc = function() {
 Geoloc.prototype = {
 
   // Initializes the module.
-  init: function() {
-    var geoView;
+  init() {
+    // var geoView;
 
     // Creates the module view.
-    geoView = new GeolocView(mainc);
+    const geoView = new GeolocView(mainc);
     log.init('geoloc', level, false);
     log.trace('Created view...');
 
     // Wait for the side menu hidden totally hidden.
-    mainc.once('sidemenu:ready', function() {
+    mainc.once('sidemenu:ready', () => {
       geoView.displayCoords();
     });
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Geoloc;

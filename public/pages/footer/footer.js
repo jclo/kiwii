@@ -1,20 +1,19 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
 
 // -- Project Modules
-var FooterView = require('./views/footerView.js')
-  , log = require('../../lib/logger.js')
-  ;
+const FooterView = require('./views/footerView.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  ;
+const level = require('../../js/config.js').level
+    ;
 
 // -- Main section
-var Footer = function() {
+const Footer = function() {
   //
 };
 
@@ -22,7 +21,7 @@ var Footer = function() {
 Footer.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module view.
     this.footer = new FooterView();
     log.init('footer', level, false);
@@ -30,9 +29,9 @@ Footer.prototype = {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Footer;

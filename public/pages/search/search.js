@@ -1,23 +1,22 @@
 /* global */
-/* eslint */
-'use strict';
+/* eslint one-var: 0 */
 
 // -- Vendor modules
-var Radio = require('backbone.radio')
-  ;
+const Radio = require('backbone.radio')
+    ;
 
 // -- Project Modules
-var SearchView = require('./views/searchView.js')
-  , log = require('../../lib/logger.js')
-  ;
+const SearchView = require('./views/searchView.js')
+    , log = require('../../lib/logger.js')
+    ;
 
 // -- Variables
-var level = require('../../js/config.js').level
-  , mainc = Radio.channel('mainc')
-  ;
+const level = require('../../js/config.js').level
+    , mainc = Radio.channel('mainc')
+    ;
 
 // -- Main section
-var Search = function() {
+const Search = function() {
   //
 };
 
@@ -25,7 +24,7 @@ var Search = function() {
 Search.prototype = {
 
   // Initializes the module.
-  init: function() {
+  init() {
     // Creates the module view.
     this.search = new SearchView(mainc);
     log.init('search', level, false);
@@ -33,9 +32,9 @@ Search.prototype = {
   },
 
   // Stops the module.
-  destroy: function() {
+  destroy() {
     // stuff here.
-  }
+  },
 };
 
 module.exports = Search;

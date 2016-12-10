@@ -1,5 +1,6 @@
+__trash
 .DS_Store
+_dist
 node_modules
 bower_components
-_dist
 public/js/wapp.js

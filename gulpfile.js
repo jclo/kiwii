@@ -24,72 +24,76 @@
  * THE SOFTWARE.
  * ***************************************************************************/
 /* global */
-/* eslint */
+/* eslint one-var: 0 */
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+/* eslint prefer-arrow-callback: 0 */
+/* eslint strict: 0 */
+
 'use strict';
 
 // -- Node modules
-var browserify   = require('browserify')
-  , del          = require('del')
-  , gulp         = require('gulp')
-  , concat       = require('gulp-concat')
-  , header       = require('gulp-header')
-  , minify       = require('gulp-minify-css')
-  , rename       = require('gulp-rename')
-  , replace      = require('gulp-replace')
-  , sourcemaps   = require('gulp-sourcemaps')
-  , uglify       = require('gulp-uglify')
-  , gutil        = require('gulp-util')
-  , buffer       = require('vinyl-buffer')
-  , sourcestream = require('vinyl-source-stream')
-  , watchify     = require('watchify')
-  ;
+const browserify   = require('browserify')
+    , del          = require('del')
+    , gulp         = require('gulp')
+    , concat       = require('gulp-concat')
+    , header       = require('gulp-header')
+    , minify       = require('gulp-clean-css')
+    , rename       = require('gulp-rename')
+    , replace      = require('gulp-replace')
+    , sourcemaps   = require('gulp-sourcemaps')
+    , uglify       = require('gulp-uglify')
+    , gutil        = require('gulp-util')
+    , buffer       = require('vinyl-buffer')
+    , sourcestream = require('vinyl-source-stream')
+    , watchify     = require('watchify')
+    ;
 
 // -- Local declarations
-var myapp    = 'MyApp'
-  , release  = require('./package.json').version
-  , source   = './public'
-  , dist     = './_dist'
-  , html     = 'index.html'
-  , bundle   = 'wapp' //require('./package.json').name.toLowerCase()
-  , app      = 'app'
-  , style    = 'style'
-  , cordova  = '<script type="text/javascript" src="cordova.js"></script>'
-  ;
+const myapp    = 'MyApp'
+    , release  = require('./package.json').version
+    , source   = './public'
+    , dist     = './_dist'
+    , html     = 'index.html'
+    , bundle   = 'wapp' // require('./package.json').name.toLowerCase()
+    , app      = 'app'
+    , style    = 'style'
+    , cordova  = '<script type="text/javascript" src="cordova.js"></script>'
+    ;
 
 // License Header
-var licensejs = ['/**',
-' * ' + myapp + ' v' + release,
-' *',
-' * ' + myapp + ' is a ...',
-' * Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com).',
-' * Released under the MIT license. You may obtain a copy of the License',
-' * at: http://www.opensource.org/licenses/mit-license.php).',
-' *',
-' * This file includes third-party code:',
-' *   . Zepto (http://zeptojs.com)',
-' *   . Backbone (http://backbonejs.org)',
-' *   . Backbone.Radio (https://github.com/marionettejs/backbone.radio)',
-' *   . lodash (https://lodash.com)',
-' *   . Handlebars (http://handlebarsjs.com)',
-' *   . Ratchet (http://goratchet.com)',
-' */',
-''
+const licensejs = ['/**',
+  ` * ${myapp} v${release}`,
+  ' *',
+  ` * ${myapp} is a ...`,
+  ' * Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com).',
+  ' * Released under the MIT license. You may obtain a copy of the License',
+  ' * at: http://www.opensource.org/licenses/mit-license.php).',
+  ' *',
+  ' * This file includes third-party code:',
+  ' *   . Zepto (http://zeptojs.com)',
+  ' *   . Backbone (http://backbonejs.org)',
+  ' *   . Backbone.Radio (https://github.com/marionettejs/backbone.radio)',
+  ' *   . lodash (https://lodash.com)',
+  ' *   . Handlebars (http://handlebarsjs.com)',
+  ' *   . Ratchet (http://goratchet.com)',
+  ' */',
+  '',
 ].join('\n');
 
-var licensecss = ['/**',
-' * ' + myapp + ' v' + release,
-' *',
-' * ' + myapp + ' is a ...',
-' * Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com).',
-' * Released under the MIT license. You may obtain a copy of the License',
-' * at: http://www.opensource.org/licenses/mit-license.php).',
-' *',
-' * This file includes third-party code:',
-' *   . Ratchet (http://goratchet.com)',
-' *   . Font-Awesome (http://fontawesome.io)',
-' *   . Weather Icons (https://erikflowers.github.io/weather-icons)',
-' */',
-''
+const licensecss = ['/**',
+  ` * ${myapp} v${release}`,
+  ' *',
+  ` * ${myapp} is a ...`,
+  ' * Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com).',
+  ' * Released under the MIT license. You may obtain a copy of the License',
+  ' * at: http://www.opensource.org/licenses/mit-license.php).',
+  ' *',
+  ' * This file includes third-party code:',
+  ' *   . Ratchet (http://goratchet.com)',
+  ' *   . Font-Awesome (http://fontawesome.io)',
+  ' *   . Weather Icons (https://erikflowers.github.io/weather-icons)',
+  ' */',
+  '',
 ].join('\n');
 
 // -- Local functions
@@ -109,35 +113,35 @@ gulp.task('create', ['remove'], function() {
 
 // Export HTML.
 gulp.task('doHTML', ['create'], function() {
-  return gulp.src(source + '/' + html)
+  return gulp.src(`${source}/${html}`)
     .pipe(replace('<script></script>', cordova))
-    .pipe(replace(bundle + '.js', bundle + '.min' + '.js'))
+    .pipe(replace(`${bundle}.js`, `${bundle}.min.js`))
     .pipe(gulp.dest(dist));
 });
 
 // Export Images.
 gulp.task('doIMG', ['create'], function() {
-  return gulp.src([source + '/**/img/*'])
+  return gulp.src([`${source}/**/img/*`])
     // Flatten folder structure.
-    .pipe(rename({dirname: ''}))
-    .pipe(gulp.dest(dist + '/img'));
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest(`${dist}/img`));
 });
 
 // Export JS.
 gulp.task('doJS', ['create'], function() {
-  return gulp.src(source + '/js/' + bundle + '.js')
+  return gulp.src(`${source}/js/${bundle}.js`)
     .pipe(uglify())
-    .pipe(concat(bundle + '.min' + '.js'))
+    .pipe(concat(`${bundle}.min.js`))
     .pipe(header(licensejs))
     .pipe(replace('@#Release#@', release))
-    .pipe(gulp.dest(dist + '/js/'));
+    .pipe(gulp.dest(`${dist}/js/`));
 });
 
 // Export CSS after merging and minification.
 gulp.task('doCSS', ['create'], function() {
-  return gulp.src(source + '/css/' + style + '.css')
+  return gulp.src(`${source}/css/style.css`)
     .pipe(minify({ keepSpecialComments: 1, keepBreaks: true }))
-    .pipe(concat(style + '.css'))
+    .pipe(concat(`${style}.css`))
     .pipe(header(licensecss))
     .pipe(replace('@#Release#@', release))
     // Rework path for fonts and images.
@@ -145,15 +149,15 @@ gulp.task('doCSS', ['create'], function() {
     .pipe(replace('../../bower_components/weather-icons/font', '../fonts'))
     .pipe(replace('../../node_modules/font-awesome/fonts', '../fonts'))
     .pipe(replace(/url\(\.\.\/.*\/img\//g, 'url(../img/'))
-    .pipe(gulp.dest(dist + '/css/'));
+    .pipe(gulp.dest(`${dist}/css/`));
 });
 
 // Export CSS after merging and minification without any dependency
 // to 'create' task.
 gulp.task('cssforwatch', function() {
-  return gulp.src(source + '/css/' + style + '.css')
+  return gulp.src(`${source}/css/style.css`)
     .pipe(minify({ keepSpecialComments: 1, keepBreaks: true }))
-    .pipe(concat(style + '.css'))
+    .pipe(concat(`${style}.css`))
     .pipe(header(licensecss))
     .pipe(replace('@#Release#@', release))
     // Rework path for fonts and images.
@@ -161,40 +165,37 @@ gulp.task('cssforwatch', function() {
     .pipe(replace('../../bower_components/weather-icons/font', '../fonts'))
     .pipe(replace('../../node_modules/font-awesome/fonts', '../fonts'))
     .pipe(replace(/url\(\.\.\/.*\/img\//g, 'url(../img/'))
-    .pipe(gulp.dest(dist + '/css/'));
+    .pipe(gulp.dest(`${dist}/css/`));
 });
 
 // Copy assosciated fonts.
 gulp.task('doFonts1', ['create'], function() {
   return gulp.src('./node_modules/font-awesome/fonts/*')
-    .pipe(gulp.dest(dist + '/fonts/'));
+    .pipe(gulp.dest(`${dist}/fonts/`));
 });
 
 gulp.task('doFonts2', ['create'], function() {
   return gulp.src('./bower_components/ratchet/dist/fonts/*')
-    .pipe(gulp.dest(dist + '/fonts/'));
+    .pipe(gulp.dest(`${dist}/fonts/`));
 });
 
 gulp.task('doFonts3', ['create'], function() {
   return gulp.src('./bower_components/weather-icons/font/*')
-    .pipe(gulp.dest(dist + '/fonts/'));
+    .pipe(gulp.dest(`${dist}/fonts/`));
 });
 
 // Browserify.
 gulp.task('browserify', ['create'], function() {
-  var b
-    ;
-
   // Set up the browserify instance.
   process.env.BROWSERIFYSWAP_ENV = 'dist';
-  b = browserify({ entries: source + '/js/' + app + '.js', debug: true });
+  const b = browserify({ entries: `${source}/js/${app}.js`, debug: true });
   // Exclude jquery from backbone as we use zepto.
   b.exclude('jquery');
 
   return b.bundle()
     // Log errors if they happen.
     .on('error', gutil.log)
-    .pipe(sourcestream(bundle + '.min.js'))
+    .pipe(sourcestream(`${bundle}.min.js`))
     // Optionnal, remove if you don't want sourcemaps.
     .pipe(buffer())
     // Load map from browserify file.
@@ -211,18 +212,14 @@ gulp.task('browserify', ['create'], function() {
 
 // Watch JS
 gulp.task('watchify', function() {
-  var b
-    ;
-
   // Set up the browserify instance.
   process.env.BROWSERIFYSWAP_ENV = 'dist';
-  b = watchify(browserify(
+  const b = watchify(browserify(
     {
-      entries: source + '/js/' + app + '.js',
-      debug:   true
+      entries: `${source}/js/${app}.js`,
+      debug: true,
     },
-    watchify.args
-  ));
+    watchify.args));
   // Exclude jquery from backbone as we use zepto.
   b.exclude('jquery');
 
@@ -230,7 +227,7 @@ gulp.task('watchify', function() {
     b.bundle()
       // Log errors if they happen.
       .on('error', gutil.log)
-      .pipe(sourcestream(bundle + '.min.js'))
+      .pipe(sourcestream(`${bundle}.min.js`))
       // Optionnal, remove if you don't want sourcemaps.
       .pipe(buffer())
       // Load map from browserify file.
@@ -254,7 +251,7 @@ gulp.task('watchify', function() {
 });
 
 // Watch if any css files have been modified.
-gulp.task('csswatch', function () {
+gulp.task('csswatch', function() {
   gulp.watch('public/**/*.css', ['cssforwatch']);
 });
 
