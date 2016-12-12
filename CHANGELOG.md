@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.2.x (December 12, 2016)
+
+  * Fixed a build issue due to the migration from Babel 6.x to 7.x,
+  * ...,
+
+
 ### 0.2.1 (December 10, 2016)
 
   * Updated Babel and Gulp Clean CSS modules.
