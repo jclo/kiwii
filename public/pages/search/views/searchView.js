@@ -2,16 +2,14 @@
 /* eslint one-var: 0 */
 
 // -- Vendor modules
-/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
-const $        = require('zepto')
-    , Backbone = require('backbone')
-    , _        = require('lodash')
-    ;
-/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
+import $ from 'zepto';
+import Backbone from 'backbone';
+import _ from 'lodash';
+/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
 
 // -- Project Modules
-const template = require('../templates/search.hbs')
-    ;
+import template from '../templates/search.hbs';
 
 // -- Variables
 

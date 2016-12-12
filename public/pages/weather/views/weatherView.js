@@ -2,16 +2,14 @@
 /* eslint one-var: 0, no-underscore-dangle: 0, max-len: [1, 110, 2] */
 
 // -- Vendor modules
-/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
-const $        = require('zepto')
-    , Backbone = require('backbone')
-    , _        = require('lodash')
-    ;
-/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
+import $ from 'zepto';
+import Backbone from 'backbone';
+import _ from 'lodash';
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
 
 // -- Project Modules
-const template = require('../templates/weather.hbs')
-    ;
+import template from '../templates/weather.hbs';
 
 // -- Variables
 // Eiffel Tower Live Web Cam (tps = current time in seconds from 1970).

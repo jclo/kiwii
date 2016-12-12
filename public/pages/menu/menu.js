@@ -4,13 +4,12 @@
 // -- Vendor modules
 
 // -- Project Modules
-const MenuView = require('./views/menuView.js')
-    , log = require('../../lib/logger.js')
-    ;
+import MenuView from './views/menuView';
+import log from '../../lib/logger';
+import config from '../../js/config';
 
 // -- Variables
-const level = require('../../js/config.js').level
-    ;
+const level = config.logger.level;
 
 // -- Main section
 const Menu = function() {

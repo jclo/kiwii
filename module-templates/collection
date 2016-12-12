@@ -4,13 +4,12 @@
 // -- Vendor modules
 
 // -- Project Modules
-const @#Class#@Model = require('./models/@#Class#@Model.js')
-    ;
+import @#Class#@Model from '../models/@#project#@Model';
 
 // -- Variables
 
 // -- Main section
 module.exports = Backbone.Collection.extend({
   url: '',
-  model: @#Class#@Model
+  model: @#Class#@Model,
 });

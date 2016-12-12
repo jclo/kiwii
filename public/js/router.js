@@ -1,35 +1,32 @@
 /* global */
 /* eslint one-var: 0 */
-// 'use strict';
 
 // -- Vendor modules
-/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
-const $        = require('zepto')
-    , Backbone = require('backbone')
-    , Radio    = require('backbone.radio')
-    ;
-/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
+import $ from 'zepto';
+import Backbone from 'backbone';
+import Radio from 'backbone.radio';
+/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
 
 // -- Project Modules
-const framework = require('../pages/framework/templates/framework.hbs')
-    , Header    = require('../pages/header/header.js')
-    , Footer    = require('../pages/footer/footer.js')
-    , Home      = require('../pages/home/home.js')
-    , Search    = require('../pages/search/search.js')
-    , Settings  = require('../pages/settings/settings.js')
-    , Geoloc    = require('../pages/geoloc/geoloc.js')
-    , Weather   = require('../pages/weather/weather.js')
-    , Legal     = require('../pages/legal/legal.js')
-    , Menu      = require('../pages/menu/menu.js')
-    , log       = require('../lib/logger.js')
-    ;
+import framework from '../pages/framework/templates/framework.hbs';
+import Header from '../pages/header/header';
+import Footer from '../pages/footer/footer';
+import Home from '../pages/home/home';
+import Search from '../pages/search/search';
+import Settings from '../pages/settings/settings';
+import Geoloc from '../pages/geoloc/geoloc';
+import Weather from '../pages/weather/weather';
+import Legal from '../pages/legal/legal';
+import Menu from '../pages/menu/menu';
+import log from '../lib/logger';
+import config from './config';
 
 // -- Variables
-const level            = require('./config.js').level
+const level            = config.logger.level
     , mainc            = Radio.channel('mainc')
     , urlHistory       = []
     , menuShiftDelay   = 1000
-    // , isSideMenuOpened = false
     ;
 
 let isSideMenuOpened = false;

@@ -4,13 +4,12 @@
 // -- Vendor modules
 
 // -- Project Modules
-const FooterView = require('./views/footerView.js')
-    , log = require('../../lib/logger.js')
-    ;
+import FooterView from './views/footerView';
+import log from '../../lib/logger';
+import config from '../../js/config';
 
 // -- Variables
-const level = require('../../js/config.js').level
-    ;
+const level = config.logger.level;
 
 // -- Main section
 const Footer = function() {

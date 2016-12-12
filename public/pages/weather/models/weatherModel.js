@@ -2,8 +2,7 @@
 /* eslint max-len: [1, 210, 2] */
 
 // -- Vendor modules
-const Backbone = require('backbone')
-    ;
+import Backbone from 'backbone';
 
 // -- Project Modules
 

@@ -2,16 +2,15 @@
 /* eslint one-var: 0 */
 
 // -- Vendor modules
-const Radio = require('backbone.radio')
-    ;
+import Radio from 'backbone.radio';
 
 // -- Project Modules
-const HeaderView = require('./views/headerView.js')
-    , log = require('../../lib/logger.js')
-    ;
+import HeaderView from './views/headerView';
+import log from '../../lib/logger';
+import config from '../../js/config';
 
 // -- Variables
-const level = require('../../js/config.js').level
+const level = config.logger.level
     , mainc = Radio.channel('mainc')
     ;
 
