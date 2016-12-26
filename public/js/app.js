@@ -15,13 +15,13 @@ import Ratchet from 'ratchet.js';
 // -- Project Modules
 import Router from './router';
 import log from '../lib/logger';
-import Config from './config';
+import config from './config';
 
 // Backbone’s jQuery reference needs to be set.
 Backbone.$ = $;
 
 // -- Variables
-const level = Config.level
+const level = config.logger.level
     ;
 
 // -- Main section

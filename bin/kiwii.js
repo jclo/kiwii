@@ -48,8 +48,8 @@ const baseapp        = process.cwd()
     , version        = require('../package.json').version
     // , projectcontent = 'project-templates'
     , tplpath        = path.join(basekiwii, 'module-templates')
-    , projectDir     = ['css', 'templates', 'models', 'views', 'collections', 'img']
-    , projectFiles   = ['@.js', 'css/@.css', 'templates/@.hbs', 'models/@Model.js', 'views/@View.js', 'collections/@Collection.js']
+    , projectDir     = ['css', 'components', 'models', 'views', 'collections', 'img']
+    , projectFiles   = ['@.js', 'css/@.css', 'components/body.js', 'models/@Model.js', 'views/@View.js', 'collections/@Collection.js']
       // Command line Options
     , opts = {
       help: [Boolean, false],
@@ -331,7 +331,7 @@ function _fillProject(base, project) {
 
   // Fill Template file.
   tpl = path.join(tplpath, 'tpl');
-  dest = path.join(base, project, 'templates', `${project}.hbs`);
+  dest = path.join(base, project, 'components', `${'body'}.js`);
   _append(tpl, dest);
 
   // Fill Project file.
@@ -458,11 +458,13 @@ function _populate(options) {
   console.log('  CHANGELOG.md');
   fs.writeFileSync(path.join(baseapp, 'CHANGELOG.md'), changelog);
 
-  // Add gulpfile.js, .eslintrc and create an empty .gitignore.
+  // Add gulpfile.js, .eslintrc, .babelrc and create an empty .gitignore.
   console.log('  gulpfile.js');
   _copyFile(path.join(basekiwii, 'gulpfile.js'), path.join(baseapp, 'gulpfile.js'));
   console.log('  .eslintrc');
   _copyFile(path.join(basekiwii, '.eslintrc'), path.join(baseapp, '.eslintrc'));
+  console.log('  .babelrc');
+  _copyFile(path.join(basekiwii, '.babelrc'), path.join(baseapp, '.babelrc'));
   console.log('  .gitignore');
   fs.closeSync(fs.openSync('.gitignore', 'w'));
 

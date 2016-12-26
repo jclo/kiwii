@@ -1,4 +1,3 @@
-
 /* Import vendor stuff */
 @import url('../../bower_components/ratchet/dist/css/ratchet.css');
 @import url('../../bower_components/ratchet/dist/css/ratchet-theme-ios.css');
@@ -7,10 +6,9 @@
 
 /* Import project CSSs */
 @import url('./app.css');
-@import url('../pages/framework/css/framework.css');
-@import url('../pages/header/css/header.css');
-@import url('../pages/footer/css/footer.css');
-@import url('../pages/menu/css/menu.css');
+@import url('../app/css/header.css');
+@import url('../app/css/footer.css');
+@import url('../app/css/menu.css');
 
 @import url('../pages/home/css/home.css');
 @import url('../pages/search/css/search.css');

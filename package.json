@@ -1,6 +1,6 @@
 {
   "name": "kiwii",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Kiwii is a lightweight HTML5 Hybrid Mobile App framework",
   "main": "index.js",
   "bin": {
@@ -12,7 +12,8 @@
     "browser": "kiwii run browser",
     "postinstall": "bower install",
     "build": "BROWSERIFYSWAP_ENV='dist' browserify public/js/app.js -o public/js/wapp.js -d --exclude jquery",
-    "watch": "BROWSERIFYSWAP_ENV='dist' watchify public/js/app.js -o public/js/wapp.js -dv --exclude jquery"
+    "watch": "BROWSERIFYSWAP_ENV='dist' watchify public/js/app.js -o public/js/wapp.js -dv --exclude jquery",
+    "pre-commit": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -40,24 +41,25 @@
     "bower": "1.8.0",
     "express": "4.14.0",
     "font-awesome": "4.7.0",
-    "handlebars": "4.0.6",
-    "lodash": "4.17.2",
-    "nopt": "3.0.6",
-    "open": "0.0.5"
+    "lodash": "4.17.3",
+    "nopt": "4.0.1",
+    "open": "0.0.5",
+    "react": "15.4.1",
+    "react-dom": "15.4.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-react-jsx": "6.8.0",
     "babel-preset-latest": "6.16.0",
     "babelify": "7.3.0",
     "browserify": "13.1.1",
     "browserify-shim": "3.8.12",
     "browserify-swap": "0.2.2",
     "del": "2.2.2",
-    "eslint": "3.11.1",
-    "eslint-config-airbnb-base": "10.0.1",
+    "eslint": "3.12.2",
+    "eslint-config-airbnb-base": "11.0.0",
     "eslint-plugin-import": "2.2.0",
-    "ghooks": "1.3.2",
     "gulp": "3.9.1",
-    "gulp-clean-css": "2.2.1",
+    "gulp-clean-css": "2.3.2",
     "gulp-concat": "2.6.1",
     "gulp-header": "1.8.8",
     "gulp-rename": "1.2.2",
@@ -65,11 +67,11 @@
     "gulp-sourcemaps": "2.2.1",
     "gulp-uglify": "2.0.0",
     "gulp-util": "3.0.7",
-    "hbsfy": "2.7.0",
+    "husky": "0.12.0",
     "path": "0.12.7",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",
-    "watchify": "3.7.0"
+    "watchify": "3.8.0"
   },
   "browser": {
     "zepto": "./bower_components/zepto/zepto.min.js",
@@ -93,14 +95,8 @@
     "transform": [
       ["babelify", { "presets": ["latest"] }],
       "browserify-shim",
-      "browserify-swap",
-      "hbsfy"
+      "browserify-swap"
     ]
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run build"
-    }
   },
   "engines": {
     "node": ">=4.0.0"

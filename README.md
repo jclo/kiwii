@@ -8,13 +8,13 @@
 [![NPM install][npm-install-image]][npm-install-url]
 
 
-Kiwii is a lightweight unopinionated HTML5 Hybrid Mobile App framework. Kiwii relies on [Backbone](http://backbonejs.org) to build your MVC web application. It relies on [Backbone.Radio](https://github.com/marionettejs/backbone.radio) for messaging, [Handlebars](http://handlebarsjs.com) for templating and [Ratchet](http://goratchet.com) and [Font-Awesome](https://fortawesome.github.io/Font-Awesome/) for styling. However, you are not forced to use these technologies for messaging, templating and styling. With little effort, you can replace them by your preferred solutions.
+Kiwii is a lightweight unopinionated HTML5 Hybrid Mobile App framework. Kiwii relies on [Backbone](http://backbonejs.org) to build your MVC web application. It relies on [Backbone.Radio](https://github.com/marionettejs/backbone.radio) for messaging, [React](https://facebook.github.io/react) for viewing and [Ratchet](http://goratchet.com) and [Font-Awesome](https://fortawesome.github.io/Font-Awesome/) for styling. However, you are not forced to use these technologies for messaging and styling. With a little effort, you can replace them by your preferred solutions.
 
 And of course, Kiwii relies on [Cordova](https://cordova.apache.org) to convert your web application into a Mobile Hybrid Application.
 
-Kiwii is just Backbone! Kiwii aims at providing a very thin framework to reduce the overhead and thus to get a very fast Mobile Hybrid Application. And, Kiwii aims at providing a totally transparent framework without magic behind the curtains. With Kiwii we want to keep the framework as simple as possible. We want the developper to understand what it does.
+Kiwii is just Backbone! Kiwii aims at providing a very thin framework to reduce the overhead and thus to get a very fast Mobile Hybrid Application. And, Kiwii aims at providing a totally transparent framework without magic behind the curtains. With Kiwii we want to keep the framework as simple as possible. We want the developer to understand what it does.
 
-A Kiwii webapp mainly consists of one HTML page, one CSS file, one Javascript file and a set of loosely coupled Kiwii Backbone MV modules.
+A Kiwii webapp mainly consists of one HTML page, one CSS file, one Javascript file and a set of loosely coupled Backbone/React MVC modules.
 
 If you are familiar with Backbone, Kiwii is really easy to use. If you aren't, you need to learn Backbone first as Kiwii is just a minimal glue around Backbone to facilitate its use.
 
@@ -24,7 +24,7 @@ Besides, Kiwii includes a CLI script, `kiwii.js`, to assist you on adding a new 
 
 Kiwii creates the webapp by building all the Javascript project files into an UMD bundle that it attaches to the HTML page (§ Architecture).
 
-Kiwii relies on [Babel](https://babeljs.io) and [Browserify](http://browserify.org) for the build. Thus, you can write ES6 Javascript code if you wish. `js/app.js` is written in ES6.
+Kiwii relies on [Babel](https://babeljs.io) and [Browserify](http://browserify.org) for the build. Thus, you can write ES6 Javascript code if you wish.
 
 Kiwii uses [Gulp](http://gulpjs.com) to build a distribution version.
 
@@ -38,13 +38,13 @@ Kiwii needs [Node](https://nodejs.org/en/) and [Gulp](http://gulpjs.com) for ins
 
 You can easily get your first Kiwii webapp running in a couple of minutes by just typing a few command lines. But first, you need to create an empty folder. It will contain your webapp.
 
-Then, you have to install Kiwii package globally. Open a terminal session and type the command:
+Then, you have to install the Kiwii package globally. Open a terminal session and type the command:
 
 ```
 npm install kiwii -g
-``` 
+```
 
-If you don't have the rights to install kiwii globally, you can install it locally in your project. Open a terminal session, move to your working directory - the empty folder you created - and type the following command:
+If you don't have the rights to install Kiwii globally, you can install it locally in your project. Open a terminal session, move to your working directory - the empty folder you created - and type the following command:
 
 ```
 npm install kiwii
@@ -74,11 +74,11 @@ Do it and you will see your webapp running. that's all!
 
 ## Architecture
 
-Kiwii webapp organisation closely matches the Backbone structure. The webapp consists of one HTML file `public/index.html`, one CSS file `public/css/style.css`, and one Javascript file `public/js/app.js`.
+Kiwii webapp organization closely matches the Backbone structure. The webapp consists of one HTML file `public/index.html`, one CSS file `public/css/style.css`, and one Javascript file `public/js/app.js`.
 
-When the HTML page is loaded into the browser, it imports the file style.css and starts the Javascript file app.js.
+When the HTML page is loaded into the browser, it imports the file style.css and starts the Javascript file `app.js`.
 
-The file style.css imports a set of dependant CSS files (see the file). These CSS files define the general styling (Ratchet) and the font used (Font-Awesome) plus the styling specific to each Backone module (see below).
+The file style.css imports a set of dependent CSS files (see the file). These CSS files define the general styling (Ratchet) and the font used (Font-Awesome) plus the styling specific to each Backbone module (see below).
 
 The file app.js starts a Javascript script (see the file). It initializes Backbone URL history and starts the Backbone router `public/js/router.js`.
 
@@ -94,34 +94,69 @@ public
       |_ router.js
 ```
 
-At this basic structure, we add Kiwii Backbone modules. Each module has a specific task (display header, footer, core page, menu, etc.).
+At this basic structure, we add Kiwii Backbone modules.
 
-Thus, Kiwii webapp is completed with:
+There is a specific Backbone module that build the app by aggregating all the `React` components together.
+
+```
+public
+  |_ app
+      |_ app.js
+      |
+      |_ components
+      |   |_ header.js
+      |   |_ menu.js
+      |   |_ body.js
+      |   |_ footer.js
+      |   |_ layout.js
+      |
+      |_ css
+      |   |_ header.css
+      |   |_ menu.css
+      |   |_ body.css
+      |   |_ footer.css
+      |
+      |_ models
+      |   |_ appModel.js
+      |
+      |_ views
+          |_ appView.js
+```
+
+The folder `components` contains all the React components to aggregate together to build the app. `header.js, menu.js, body.js and footer.js` are the basic React components and `layout.js` is the composite React component.
+
+`app.js` is the interface of the module and `appView.js` contains the code for rendering the app (`ReactDOM.render()`).
+
+The other specific views (home, settings, legal, etc.) are under `pages`:
 
 ```
 public
   |_ pages
-       |_ home
-           |_ home.js
-           |_templates
-           |    |_ home.hbs
-           |_ css
-           |   |_ home.css
-           |_ models
-           |    |_ homeModel.js
-           |_ views
-                |_ homeView.js
+      |_ home
+          |_ home.js
+          |
+          |components
+          |   |_ body.js
+          |
+          |_ css
+          |   |_ home.css
+          |
+          |_ models
+          |   |_ homeModel.js
+          |
+          |_ views
+              |_ homeView.js
 ```
 
 The folder `pages` contains a set of folders. Each folder is a Kiwii Backbone module.
 
-A Kiwii Backbone module consists of an interface, a view, a model, a template and a style sheet.
+A Kiwii Backbone module consists of an interface, a view, a model, a React component and a style sheet.
 
 The interface (here home.js) is the link with the other parts of the webapp. It sends and listens messages from the router/controller. It updates the model (here homeModel.js) and the view (here homeView.js). Models and Views have no link with the outside. They must go through the interface.
 
-The template (here home.hbs) is an HTML file, with handlebars tags, that contains the HTML structure of the module.
+The React component (here body.js) contains the JSX structure of the page to display.
 
-The style sheet (here home.css) defines what style to apply to the template.
+The style sheet (here home.css) defines what style to apply to this specific page.
 
 
 ## Build
@@ -131,7 +166,7 @@ Kiwii provides two commands to build your webapp:
   * npm run build,
   * npm run watch.
 
-`npm run build` launches a script that bundles all the Javascript files, of your project, in one big file `public/js/wapp.js`. This file that is attached to `public/index.html`.
+`npm run build` launches a script that bundles all the Javascript files, of your project, in one big file `public/js/wapp.js`. This file is attached to `public/index.html`.
 
 `npm run watch`, as its name lets think, launches a script that watches the files of your project. If one file is modified, it automatically updates `public/js/wapp.js`.
 
@@ -225,7 +260,7 @@ Your Hybrid Application runs now at the address `http://localhost:8000`.
 
 ### Create an IOS Application
 
-Be aware, you can create an IOS app only from a Mac OS X platform with Xcode tools installed. 
+Be aware, you can create an IOS app only from a Mac OS X platform with Xcode tools installed.
 
 If you are on a Mac and you have Xcode installed, type the command:
 
@@ -248,7 +283,7 @@ Build the IOS Application:
 cordova build ios
 ```
 
-Then go to `myapp/platforms/ios/` and double click the file `HelloCordova.xcodeproj`. It launches Xcode. When the Xcode application is opened, select the menu `Product -> Run`. Xcode will open the IOS Simulator and you will see your IOS Hybrid Mobile App running! 
+Then go to `myapp/platforms/ios/` and double click the file `HelloCordova.xcodeproj`. It launches Xcode. When the Xcode application is opened, select the menu `Product -> Run`. Xcode will open the IOS Simulator and you will see your IOS Hybrid Mobile App running!
 
 Enjoy!
 

@@ -2,6 +2,7 @@
 /* eslint one-var: 0 */
 
 // -- Vendor modules
+import Radio from 'backbone.radio';
 
 // -- Project Modules
 import @#Class#@View from './views/@#project#@View';
@@ -10,6 +11,7 @@ import config from '../../js/config';
 
 // -- Variables
 const level = config.logger.level
+    , mainc = Radio.channel('mainc')
     ;
 
 // -- Main section
@@ -21,11 +23,11 @@ const @#Class#@ = function() {
 @#Class#@.prototype = {
 
   // Initializes the module.
-  init() {
-    // Creates the module view.
-    this.@#project#@ = new @#Class#@View();
+  init(app) {
+    // Creates the module view:
+    this.@#project#@ = new @#Class#@View(app, mainc);
     log.init('@#project#@', level, false);
-    log.trace('Created view...');
+    log.trace('the content of the page is updated...');
   },
 
   // Stops the module.

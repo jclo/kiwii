@@ -4,11 +4,16 @@
    */
   "parserOptions": {
     "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   /**
    * Set Environnement
    */
-  // Done by airbnb
+  "env": {
+    "browser": true
+  },
   /**
    * Set globals
    */

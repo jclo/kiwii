@@ -24,12 +24,12 @@ const Weather = function() {
 Weather.prototype = {
 
   // Initializes the module.
-  init() {
-    // Creates the module model and view.
+  init(app) {
+    // Creates the module model and view:
     const model = new WeatherModel();
-    this.weather = new WeatherView({ model, mailbox: mainc });
+    this.weather = new WeatherView(app, model, mainc);
     log.init('weather', level, false);
-    log.trace('Created model & view...');
+    log.trace('the content of the page is updated...');
   },
 
   // Stops the module.

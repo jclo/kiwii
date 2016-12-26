@@ -1,6 +1,3 @@
-/* global */
-/* eslint */
-
 // -- Vendor modules
 import React from 'react';
 
@@ -10,12 +7,11 @@ import React from 'react';
 
 // -- Main section
 export default React.createClass({
+
   render() {
     return (
-      <div className={'xxx'}>
-        <p className={'yyy'}>
-          My React component ...
-        </p>
+      <div>
+        <p>{'Add the content of the App here!'}</p>
       </div>
     );
   },

@@ -23,11 +23,11 @@ const Home = function() {
 Home.prototype = {
 
   // Initializes the module.
-  init() {
-    // Creates the module view.
-    this.home = new HomeView(mainc);
+  init(app) {
+    // Creates the module view:
+    this.home = new HomeView(app, mainc);
     log.init('home', level, false);
-    log.trace('Created view...');
+    log.trace('the content of the page is updated...');
   },
 
   // Stops the module.

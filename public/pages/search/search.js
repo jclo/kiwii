@@ -23,11 +23,11 @@ const Search = function() {
 Search.prototype = {
 
   // Initializes the module.
-  init() {
-    // Creates the module view.
-    this.search = new SearchView(mainc);
+  init(app) {
+    // Creates the module view:
+    this.search = new SearchView(app, mainc);
     log.init('search', level, false);
-    log.trace('Created view...');
+    log.trace('the content of the page is updated.');
   },
 
   // Stops the module.

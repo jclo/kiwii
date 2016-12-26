@@ -23,11 +23,11 @@ const Legal = function() {
 Legal.prototype = {
 
   // Initializes the module.
-  init() {
+  init(app) {
     // Creates the module view.
-    this.legal = new LegalView(mainc);
+    this.legal = new LegalView(app, mainc);
     log.init('legal', level, false);
-    log.trace('Created view...');
+    log.trace('the content of the page is updated...');
   },
 
   // Stops the module.

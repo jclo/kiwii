@@ -23,11 +23,11 @@ const Settings = function() {
 Settings.prototype = {
 
   // Initializes the module.
-  init() {
-    // Creates the module view.
-    this.settings = new SettingsView(mainc);
+  init(app) {
+    // Creates the module view:
+    this.settings = new SettingsView(app, mainc);
     log.init('settings', level, false);
-    log.trace('Created view...');
+    log.trace('the content of the page is updated...');
   },
 
   // Stops the module.

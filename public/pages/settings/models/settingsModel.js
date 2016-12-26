@@ -1,6 +1,3 @@
-/* global */
-/* eslint */
-
 // -- Vendor modules
 
 // -- Project Modules

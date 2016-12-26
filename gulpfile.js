@@ -74,8 +74,8 @@ const licensejs = ['/**',
   ' *   . Backbone (http://backbonejs.org)',
   ' *   . Backbone.Radio (https://github.com/marionettejs/backbone.radio)',
   ' *   . lodash (https://lodash.com)',
-  ' *   . Handlebars (http://handlebarsjs.com)',
   ' *   . Ratchet (http://goratchet.com)',
+  ' *   . React (https://facebook.github.io/react/)',
   ' */',
   '',
 ].join('\n');
@@ -188,6 +188,7 @@ gulp.task('doFonts3', ['create'], function() {
 gulp.task('browserify', ['create'], function() {
   // Set up the browserify instance.
   process.env.BROWSERIFYSWAP_ENV = 'dist';
+  process.env.NODE_ENV = 'production';
   const b = browserify({ entries: `${source}/js/${app}.js`, debug: true });
   // Exclude jquery from backbone as we use zepto.
   b.exclude('jquery');
@@ -214,6 +215,7 @@ gulp.task('browserify', ['create'], function() {
 gulp.task('watchify', function() {
   // Set up the browserify instance.
   process.env.BROWSERIFYSWAP_ENV = 'dist';
+  process.env.NODE_ENV = 'production';
   const b = watchify(browserify(
     {
       entries: `${source}/js/${app}.js`,

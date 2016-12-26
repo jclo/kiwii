@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.3 (December 26, 2016)
+
+  * Added React.js to handle the views and removed Handlebars.
+
+
 ### 0.2.2 (December 12, 2016)
 
   * Fixed a build issue due to the migration from Babel 6.x to 7.x,

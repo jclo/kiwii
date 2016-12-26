@@ -23,15 +23,13 @@ const Geoloc = function() {
 Geoloc.prototype = {
 
   // Initializes the module.
-  init() {
-    // var geoView;
-
-    // Creates the module view.
-    const geoView = new GeolocView(mainc);
+  init(app) {
+    // Creates the module view:
+    const geoView = new GeolocView(app, mainc);
     log.init('geoloc', level, false);
-    log.trace('Created view...');
+    log.trace('the content of the page is updated.');
 
-    // Wait for the side menu hidden totally hidden.
+    // Wait for the side menu totally hidden before displaying coordinates:
     mainc.once('sidemenu:ready', () => {
       geoView.displayCoords();
     });

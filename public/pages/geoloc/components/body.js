@@ -1,6 +1,3 @@
-/* global */
-/* eslint */
-
 // -- Vendor modules
 import React from 'react';
 
@@ -12,9 +9,10 @@ import React from 'react';
 export default React.createClass({
   render() {
     return (
-      <div className={'xxx'}>
-        <p className={'yyy'}>
-          My React component ...
+      <div>
+        <h1>{this.props.options.title}</h1>
+        <p>
+          {this.props.options.text}
         </p>
       </div>
     );
