@@ -3,7 +3,7 @@
 ### 0.4 (June 15, 2017)
 
   * Reworked the build scripts and removed Bower dependencies,
-  * ...,
+  * Release.
 
 
 ### 0.3 (December 26, 2016)
