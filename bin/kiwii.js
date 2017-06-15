@@ -4,7 +4,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2015-2016 jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr)
+ * Copyright (c) 2017 jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,9 +35,6 @@ const fs      = require('fs')
     , exec    = require('child_process').exec
     , nopt    = require('nopt')
     , path    = require('path')
-    , express = require('express')
-    , http    = require('http')
-    , open    = require('open')
     ;
 
 // -- Global variables
@@ -45,6 +42,7 @@ const baseapp        = process.cwd()
     , basekiwii      = __dirname.replace('/bin', '')
     , publickiwii    = 'public'
     , publicapp      = 'public'
+    , gulptasks      = 'tasks'
     , version        = require('../package.json').version
     // , projectcontent = 'project-templates'
     , tplpath        = path.join(basekiwii, 'module-templates')
@@ -82,7 +80,7 @@ const readme = [
 const license = [
   'The MIT License (MIT)',
   '',
-  'Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
+  'Copyright (c) 2017 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
   '',
   'Permission is hereby granted, free of charge, to any person obtaining a copy',
   'of this software and associated documentation files (the "Software"), to deal',
@@ -178,7 +176,7 @@ function _copyRecursiveSync(source, dest) {
 }
 
 /**
- * Removes kiwii dependencies to package.json and bower.json
+ * Removes kiwii dependencies to package.json.
  *
  * @function (arg1, arg2, arg3)
  * @private
@@ -189,53 +187,45 @@ function _copyRecursiveSync(source, dest) {
  */
 function _customizeApp(homekiwii, homeapp, app) {
   const npm = 'package.json'
-    , bower = 'bower.json'
-    ;
-  let json
-    , obj
     ;
 
   // Rework package.json
-  json = fs.readFileSync(path.join(homekiwii, npm), 'utf8', (error) => {
+  const json = fs.readFileSync(path.join(homekiwii, npm), 'utf8', (error) => {
     if (error) {
       throw error;
     }
   });
 
-  obj = JSON.parse(json);
-  obj.name = app.toLowerCase();
-  obj.version = '0.0.0';
-  obj.description = `${app} ...`;
-  obj.repository.url = 'https://github.com/author/libname.git';
-  obj.keywords = ['to be filled'];
-  obj.author = 'John Doe <jdo@johndoe.com> (http://www.johndoe.com)';
-  obj.bugs.url = 'https://github.com/author/libname/issues';
-  obj.homepage = 'https://github.com/author/libname';
-  delete obj.bin;
-  delete obj.devDependencies.express;
-  delete obj.devDependencies.nopt;
+  const obj = JSON.parse(json);
+  const pack = {};
+  pack.name = app.toLowerCase();
+  pack.version = '0.0.0';
+  pack.description = `${app} ...`;
+  pack.main = obj.main;
+  pack.scripts = obj.scripts;
+  pack.repository = obj.repository;
+  pack.repository.url = 'https://github.com/author/libname.git';
+  pack.keywwords = ['to be filled!'];
+  pack.author = obj.author;
+  pack.author.name = 'John Doe';
+  pack.author.email = 'jdo@johndoe.com';
+  pack.author.url = 'http://www.johndoe.com';
+  pack.license = obj.license;
+  pack.bugs = obj.bugs;
+  pack.bugs.url = 'https://github.com/author/libname/issues';
+  pack.homepage = 'https://github.com/author/libname';
+  pack.dependencies = obj.dependencies;
+  delete obj.dependencies.nopt;
+  pack.devDependencies = obj.devDependencies;
   delete obj.devDependencies.path;
-  delete obj.devDependencies.open;
+  pack.browser = obj.browser;
+  pack['browserify-shim'] = obj['browserify-shim'];
+  pack['browserify-swap'] = obj['browserify-swap'];
+  pack.browserify = obj.browserify;
+  pack.engines = obj.engines;
 
   console.log(`  ${npm}`);
-  fs.writeFileSync(path.join(homeapp, npm), JSON.stringify(obj, null, 2));
-
-  // Rework bower.json
-  json = fs.readFileSync(path.join(homekiwii, bower), 'utf8', (error) => {
-    if (error) {
-      throw error;
-    }
-  });
-
-  obj = JSON.parse(json);
-  obj.name = app.toLowerCase();
-  obj.description = `${app} ...`;
-  obj.authors = ['John Doe <jdo@johndoe.com> (http://www.johndoe.com)'];
-  obj.keywords = ['to be filled'];
-  obj.homepage = 'https://github.com/author/libname';
-
-  console.log(`  ${npm}`);
-  fs.writeFileSync(path.join(homeapp, bower), JSON.stringify(obj, null, 2));
+  fs.writeFileSync(path.join(homeapp, npm), JSON.stringify(pack, null, 2));
 }
 
 /**
@@ -416,7 +406,6 @@ function _help() {
     '',
     'populate            populate the app',
     'add                 add a module to the web app',
-    'run browser         run _dist in the default browser',
     '',
     'Options:',
     '',
@@ -459,8 +448,9 @@ function _populate(options) {
   fs.writeFileSync(path.join(baseapp, 'CHANGELOG.md'), changelog);
 
   // Add gulpfile.js, .eslintrc, .babelrc and create an empty .gitignore.
-  console.log('  gulpfile.js');
+  console.log('  gulpfile.js & gulp tasks');
   _copyFile(path.join(basekiwii, 'gulpfile.js'), path.join(baseapp, 'gulpfile.js'));
+  _copyRecursiveSync(path.join(basekiwii, gulptasks), path.join(baseapp, gulptasks));
   console.log('  .eslintrc');
   _copyFile(path.join(basekiwii, '.eslintrc'), path.join(baseapp, '.eslintrc'));
   console.log('  .babelrc');
@@ -468,7 +458,7 @@ function _populate(options) {
   console.log('  .gitignore');
   fs.closeSync(fs.openSync('.gitignore', 'w'));
 
-  // Add package.json and bower.json but first remove kiwii dependencies.
+  // Add package.json but first remove kiwii dependencies.
   _customizeApp(basekiwii, baseapp, app);
 
   // Create and fill the public folder.
@@ -516,33 +506,6 @@ function _add(options) {
   }
 }
 
-/**
- * Starts an HTTP server and opens the browser.
- *
- * @function ()
- * @private
- * @param {}          -,
- * @returns {}        -,
- */
-function _run() {
-  const app = express()
-      , httpServer = http.createServer(app)
-      ;
-
-  // Configure the port and the static page.
-  app.set('port', process.env.PORT || 3000);
-  app.use(express.static(path.join(baseapp, '_dist')));
-
-  // Start the HTTP Server.
-  httpServer.listen(app.get('port'), () => {
-    console.log(`Express server listening on port ${app.get('port')}`);
-  });
-
-  // Open the browser.
-  open('http://localhost:3000');
-}
-/* eslint-enable no-underscore-dangle */
-
 
 // -- Main
 if (parsed.help) {
@@ -558,8 +521,6 @@ if (parsed.argv.remain[0] === 'populate') {
   _populate(parsed);
 } else if (parsed.argv.remain[0] === 'add') {
   _add(parsed);
-} else if (parsed.argv.remain[0] === 'run' && parsed.argv.remain[1] === 'browser') {
-  _run();
 } else {
   _help();
 }

@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.4 (June 15, 2017)
+
+  * Reworked the build scripts and removed Bower dependencies,
+  * ...,
+
+
 ### 0.3 (December 26, 2016)
 
   * Added React.js to handle the views and removed Handlebars.

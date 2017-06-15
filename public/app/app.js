@@ -25,35 +25,35 @@ App.prototype = {
   // Initializes the module.
   init() {
     // Creates the module view.
-    this.app = new AppView(mainc);
+    this.view = new AppView(mainc);
     log.init('App', level, false);
     log.trace('the app is created...');
   },
 
   // Sets and updates the title of the App.
   setTitle(title) {
-    this.app.setTitle(title);
+    this.view.setTitle(title);
     log.init('App', level, false);
     log.trace('the title is updated...');
   },
 
   // Sets and updates the body content of the App.
   setContent(content, options) {
-    this.app.setContent(content, options);
+    this.view.setContent(content, options);
     log.init('App', level, false);
     log.trace('the content is updated...');
   },
 
   // Makes the side menu visible.
   openMenu() {
-    this.app.openMenu();
+    this.view.openMenu();
     log.init('App', level, false);
     log.trace('the menu is opened...');
   },
 
   // Makes the side menu invisible.
   closeMenu() {
-    this.app.closeMenu();
+    this.view.closeMenu();
     log.init('App', level, false);
     log.trace('the menu is closed...');
   },

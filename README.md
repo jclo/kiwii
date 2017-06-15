@@ -90,7 +90,7 @@ public
   |_ css
   |   |_ style.css
   |_ js
-      |_ app.js
+      |_ main.js
       |_ router.js
 ```
 
@@ -161,14 +161,17 @@ The style sheet (here home.css) defines what style to apply to this specific pag
 
 ## Build
 
-Kiwii provides two commands to build your webapp:
+Kiwii provides three commands to build and run your webapp:
 
   * npm run build,
-  * npm run watch.
+  * npm run watch,
+  * npm run app,
 
 `npm run build` launches a script that bundles all the Javascript files, of your project, in one big file `public/js/wapp.js`. This file is attached to `public/index.html`.
 
 `npm run watch`, as its name lets think, launches a script that watches the files of your project. If one file is modified, it automatically updates `public/js/wapp.js`.
+
+`npm run app` creates an HTTP server listening on port 3000 and launches your default browser with the URL `http://localhost:3000`. You should see your webapp running in it.
 
 
 ## Add a new module
@@ -187,11 +190,10 @@ When your module is ready to be tested, you need to instantiate it in `public/js
 
 ## Create a distribution version
 
-Kiwii provides three commands to build your webapp:
+Kiwii provides two commands to build and run your webapp:
 
-  * npm run build_dist,
-  * npm run update_dist,
-  * npm run browser.
+  * npm run makedist,
+  * npm run dist,
 
 But, before building a distribution version, you need to install the gulp module globally if it isn't done yet.
 
@@ -201,25 +203,9 @@ npm install -g gulp@3.9.0
 
 When done, you can build your distribution version. Type:
 
-```
-npm run build_dist
-```
+  * `npm run makedist`: it will create a folder `_dist` with all the files required for your webapp. Mainly one HTML file, one big CSS file and one big Javascript file. The two last files include an header copyright defined in `tasks/.js`.
 
-It will create a folder `_dist` with all the files required for your webapp. Mainly one HTML file, one big CSS file and one big Javascript file. The two last files include an header copyright defined in `gulpfile.js`.
-
-You can update your distribution version, on the fly, each time you modify a project file by typing this command:
-
-```
-npm run update_dist
-```
-
-And finally, you can view your distribution application running in the default browser of your PC. Type:
-
-```
-npm run browser
-```
-
-It creates an HTTP server listening on port 3000 and it launches your default browser with the URL `http://localhost:3000`. You should see your distribution webapp running in it.
+  * `npm run dist`: it creates an HTTP server listening on port 3000 and it launches your default browser with the URL `http://localhost:3000`. You should see your distribution webapp running in it.
 
 
 ## Create a Mobile Hybrid Application

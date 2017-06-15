@@ -3,12 +3,12 @@
 
 // -- Vendor modules
 import Backbone from 'backbone';
-/* eslint-disable import/no-extraneous-dependencies, no-unused-vars,
-  import/no-unresolved, import/extensions */
 import $ from 'zepto';
 // Even if ratchet.js is a IIFE, we need ot define it here otherwise
 // it isn't browserified with the other js files.
-import Ratchet from 'ratchet.js';
+/* eslint-disable import/no-extraneous-dependencies, no-unused-vars,
+  import/no-unresolved, import/extensions */
+import Ratchet from 'ratchet';
 /* eslint-enable import/no-extraneous-dependencies, no-unused-vars,
   import/no-unresolved, import/extensions */
 

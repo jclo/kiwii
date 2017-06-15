@@ -23,32 +23,32 @@ module.exports = Backbone.View.extend({
     // Fixes loss of context for 'this' within methods:
     _.bindAll(this, 'render');
     // Not all views are self-rendering. This one is.
-    this.render();
+    this.rendered = this.render();
   },
 
   // Sets and updates the title of the App.
   setTitle(title) {
-    this.app.setTitle(title);
+    this.rendered.setTitle(title);
   },
 
   // Sets and updates the body content of the App.
   setContent(content, options) {
-    this.app.setContent(content, options);
+    this.rendered.setContent(content, options);
   },
 
   // Makes the side menu visible.
   openMenu() {
-    this.app.openMenu();
+    this.rendered.openMenu();
   },
 
   // Makes the side menu invisible.
   closeMenu() {
-    this.app.closeMenu();
+    this.rendered.closeMenu();
   },
 
   // Creates the virtual DOM of the App.
   render() {
-    this.app = ReactDOM.render(
+    return ReactDOM.render(
       <App />,
       document.getElementById('app'),
     );

@@ -1,19 +1,18 @@
 {
   "name": "kiwii",
-  "version": "0.3.0",
-  "description": "Kiwii is a lightweight HTML5 Hybrid Mobile App framework",
+  "version": "0.4.0",
+  "description": "A lightweight HTML5 Hybrid Mobile App framework",
   "main": "index.js",
   "bin": {
     "kiwii": "./bin/kiwii.js"
   },
   "scripts": {
-    "build_dist": "gulp build",
-    "update_dist": "gulp watch",
-    "browser": "kiwii run browser",
-    "postinstall": "bower install",
-    "build": "BROWSERIFYSWAP_ENV='dist' browserify public/js/app.js -o public/js/wapp.js -d --exclude jquery",
-    "watch": "BROWSERIFYSWAP_ENV='dist' watchify public/js/app.js -o public/js/wapp.js -dv --exclude jquery",
-    "pre-commit": "npm run build"
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "makedist": "gulp",
+    "app": "gulp connect",
+    "dist": "gulp connectdist",
+    "pre-commit": "npm run makedist"
   },
   "repository": {
     "type": "git",
@@ -29,7 +28,11 @@
     "browserify",
     "ios"
   ],
-  "author": "jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr/)",
+  "author": {
+    "name": "jclo",
+    "email": "jclo@mobilabs.fr",
+    "url": "http://www.mobilabs.fr/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jclo/kiwii/issues"
@@ -38,44 +41,49 @@
   "dependencies": {
     "backbone": "1.3.3",
     "backbone.radio": "2.0.0",
-    "bower": "1.8.0",
-    "express": "4.14.0",
     "font-awesome": "4.7.0",
-    "lodash": "4.17.3",
+    "goratchet": "2.0.2",
+    "lodash": "4.17.4",
     "nopt": "4.0.1",
     "open": "0.0.5",
-    "react": "15.4.1",
-    "react-dom": "15.4.1"
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "weathericons": "2.1.0",
+    "zepto": "1.1.6"
   },
   "devDependencies": {
-    "babel-plugin-transform-react-jsx": "6.8.0",
-    "babel-preset-latest": "6.16.0",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babel-preset-latest": "6.24.1",
     "babelify": "7.3.0",
-    "browserify": "13.1.1",
-    "browserify-shim": "3.8.12",
+    "browserify": "14.4.0",
+    "browserify-shim": "3.8.14",
     "browserify-swap": "0.2.2",
-    "del": "2.2.2",
-    "eslint": "3.12.2",
-    "eslint-config-airbnb-base": "11.0.0",
-    "eslint-plugin-import": "2.2.0",
+    "del": "3.0.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb-base": "11.2.0",
+    "eslint-plugin-import": "2.3.0",
     "gulp": "3.9.1",
-    "gulp-clean-css": "2.3.2",
+    "gulp-clean-css": "3.4.2",
     "gulp-concat": "2.6.1",
+    "gulp-connect": "5.0.0",
     "gulp-header": "1.8.8",
     "gulp-rename": "1.2.2",
     "gulp-replace": "0.5.4",
-    "gulp-sourcemaps": "2.2.1",
-    "gulp-uglify": "2.0.0",
-    "gulp-util": "3.0.7",
-    "husky": "0.12.0",
+    "gulp-sourcemaps": "2.6.0",
+    "gulp-uglify": "2.1.2",
+    "gulp-util": "3.0.8",
+    "husky": "0.13.4",
     "path": "0.12.7",
+    "rename": "1.0.4",
+    "require-dir": "0.3.2",
+    "run-sequence": "1.2.2",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",
-    "watchify": "3.8.0"
+    "watchify": "3.9.0"
   },
   "browser": {
-    "zepto": "./bower_components/zepto/zepto.min.js",
-    "ratchet": "./bower_components/ratchet/dist/js/ratchet.js"
+    "zepto": "./node_modules/zepto/dist/zepto.js",
+    "ratchet": "./node_modules/goratchet/dist/js/ratchet.js"
   },
   "browserify-shim": {
     "zepto": "$",
@@ -93,7 +101,14 @@
   },
   "browserify": {
     "transform": [
-      ["babelify", { "presets": ["latest"] }],
+      [
+        "babelify",
+        {
+          "presets": [
+            "latest"
+          ]
+        }
+      ],
       "browserify-shim",
       "browserify-swap"
     ]
