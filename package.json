@@ -1,6 +1,6 @@
 {
   "name": "kiwii",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "A lightweight HTML5 Hybrid Mobile App framework",
   "main": "index.js",
   "bin": {
