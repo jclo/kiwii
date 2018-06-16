@@ -1,5 +1,5 @@
 /* eslint one-var: 0, prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0 */
-/* eslint strict: 0 */
+/* eslint strict: 0, semi-style: 0 */
 
 'use strict';
 
@@ -19,22 +19,22 @@ const config = require('./config')
     ;
 
 // -- Local constants
-const source = config.source
-    , dist = config.dist
-    , lib = config.lib
-    , bundle = config.bundle
-    , html = config.copy.html
-    , cordova = config.copy.cordova
-    , style = config.copy.style
-    , img = config.copy.img
+const { source } = config
+    , { dist } = config
+    , { lib } = config
+    , { bundle } = config
+    , { html } = config.copy
+    , { cordova } = config.copy
+    , { style } = config.copy
+    , { img } = config.copy
     , licensejs = config.license.js
     , licensecss = config.license.css
     , destjs = config.copy.dest.js
     , destcss = config.copy.dest.css
     , destimg = config.copy.dest.img
-    , ratchet = config.copy.fonts.ratchet
-    , weatherIcons = config.copy.fonts.weatherIcons
-    , fontAwesome = config.copy.fonts.fontAwesome
+    , { ratchet } = config.copy.fonts
+    , { weatherIcons } = config.copy.fonts
+    , { fontAwesome } = config.copy.fonts
     ;
 
 // -- Local variables
@@ -62,11 +62,11 @@ gulp.task('uglify', function() {
 // Copy CSS:
 gulp.task('doCSS', function() {
   return gulp.src(style)
-  .pipe(cleanCSS({ specialComments: 1, format: 'keep-breaks' }))
-  .pipe(header(licensecss))
-  // Flatten the path for the images:
-  .pipe(replace(/url\(\.\.\/.*\/img\//g, 'url(../img/'))
-  .pipe(gulp.dest(destcss));
+    .pipe(cleanCSS({ specialComments: 1, format: 'keep-breaks' }))
+    .pipe(header(licensecss))
+    // Flatten the path for the images:
+    .pipe(replace(/url\(\.\.\/.*\/img\//g, 'url(../img/'))
+    .pipe(gulp.dest(destcss));
 });
 
 // Copy the lib to dist:
@@ -108,8 +108,10 @@ gulp.task('copy-fontawesome', function() {
 
 // -- Gulp Public Tasks
 gulp.task('copyproject', function(callback) {
-  runSequence(['doHTML', 'uglify', 'doCSS', 'copyimg'],
-  ['copy-ratchet-fonts', 'copy-weather-icons-fonts', 'copy-fontawesome'],
-  ['copylib', 'copymap'],
-  callback);
+  runSequence(
+    ['doHTML', 'uglify', 'doCSS', 'copyimg'],
+    ['copy-ratchet-fonts', 'copy-weather-icons-fonts', 'copy-fontawesome'],
+    ['copylib', 'copymap'],
+    callback,
+  );
 });

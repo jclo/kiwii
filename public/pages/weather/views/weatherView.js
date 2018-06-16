@@ -17,7 +17,7 @@ const eiffelurl = 'http://www.parisapartment7eme.com/image_r.jpg?tps=';
 // -- Private functions
 
 const _getIcon = function(code) {
-  /* eslint-disable key-spacing */
+  /* eslint-disable key-spacing, no-multi-spaces */
   const yahoocode = {
     0:  'wi-tornado',                // tornado
     1:  'wi-thunderstorm',           // tropical storm
@@ -69,7 +69,7 @@ const _getIcon = function(code) {
     47: '',       //  isolated thundershowers
     // 3200: '',  //  not available
   };
-  /* eslint-enable key-spacing */
+  /* eslint-enable key-spacing, no-multi-spaces */
   return yahoocode[code];
 };
 
@@ -106,6 +106,7 @@ const _fetch = function(model) {
         let date, time, code, text, tempF, tempC, humidity, pressure, wind;
 
         if (model.attributes.query.results) {
+          /* eslint-disable prefer-destructuring */
           date = new Date();
           time = date.getTime();
           code = model.attributes.query.results.channel.item.condition.code;
@@ -115,6 +116,7 @@ const _fetch = function(model) {
           humidity = model.attributes.query.results.channel.atmosphere.humidity;
           pressure = (model.attributes.query.results.channel.atmosphere.pressure * 3376.85) / 100;
           wind = parseInt(model.attributes.query.results.channel.wind.speed * 1.609344, 10);
+          /* eslint-enable prefer-destructuring */
         } else {
           date = new Date();
           time = date.getTime();

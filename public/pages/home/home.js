@@ -1,5 +1,5 @@
 /* global */
-/* eslint one-var: 0 */
+/* eslint one-var: 0, semi-style: 0 */
 
 // -- Vendor modules
 import Radio from 'backbone.radio';
@@ -10,8 +10,8 @@ import log from '../../lib/logger';
 import config from '../../js/config';
 
 // -- Variables
-const level = config.logger.level
-    , mainc = Radio.channel('mainc')
+const { level } = config.logger
+    , mainc     = Radio.channel('mainc')
     ;
 
 // -- Main section

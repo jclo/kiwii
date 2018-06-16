@@ -1,6 +1,6 @@
 {
   "name": "kiwii",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A lightweight HTML5 Hybrid Mobile App framework",
   "main": "index.js",
   "bin": {
@@ -43,43 +43,44 @@
     "backbone.radio": "2.0.0",
     "font-awesome": "4.7.0",
     "goratchet": "2.0.2",
-    "lodash": "4.17.4",
+    "lodash": "4.17.10",
     "nopt": "4.0.1",
-    "open": "0.0.5",
+    "opn": "5.3.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "weathericons": "2.1.0",
-    "zepto": "1.1.6"
+    "zepto": "1.2.0"
   },
   "devDependencies": {
+    "babel-core": "6.26.3",
     "babel-plugin-transform-react-jsx": "6.24.1",
-    "babel-preset-latest": "6.24.1",
-    "babelify": "7.3.0",
-    "browserify": "14.4.0",
+    "babel-preset-env": "1.7.0",
+    "babelify": "8.0.0",
+    "browserify": "16.2.2",
     "browserify-shim": "3.8.14",
     "browserify-swap": "0.2.2",
     "del": "3.0.0",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb-base": "11.2.0",
-    "eslint-plugin-import": "2.3.0",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.12.0",
     "gulp": "3.9.1",
-    "gulp-clean-css": "3.4.2",
+    "gulp-clean-css": "3.9.4",
     "gulp-concat": "2.6.1",
-    "gulp-connect": "5.0.0",
-    "gulp-header": "1.8.8",
-    "gulp-rename": "1.2.2",
-    "gulp-replace": "0.5.4",
-    "gulp-sourcemaps": "2.6.0",
-    "gulp-uglify": "2.1.2",
+    "gulp-connect": "5.5.0",
+    "gulp-header": "2.0.5",
+    "gulp-rename": "1.3.0",
+    "gulp-replace": "1.0.0",
+    "gulp-sourcemaps": "2.6.4",
+    "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8",
-    "husky": "0.13.4",
+    "husky": "0.14.3",
     "path": "0.12.7",
     "rename": "1.0.4",
-    "require-dir": "0.3.2",
-    "run-sequence": "1.2.2",
-    "vinyl-buffer": "1.0.0",
-    "vinyl-source-stream": "1.1.0",
-    "watchify": "3.9.0"
+    "require-dir": "1.0.0",
+    "run-sequence": "2.2.1",
+    "vinyl-buffer": "1.0.1",
+    "vinyl-source-stream": "2.0.0",
+    "watchify": "3.11.0"
   },
   "browser": {
     "zepto": "./node_modules/zepto/dist/zepto.js",
@@ -101,14 +102,6 @@
   },
   "browserify": {
     "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "latest"
-          ]
-        }
-      ],
       "browserify-shim",
       "browserify-swap"
     ]

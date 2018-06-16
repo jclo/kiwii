@@ -1,5 +1,5 @@
 /* eslint one-var: 0, prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0 */
-/* eslint strict: 0 */
+/* eslint strict: 0, semi-style: 0 */
 
 'use strict';
 
@@ -14,10 +14,10 @@ const config = require('./config')
   ;
 
 // -- Local constants
-const vendor       = config.vendor.folder
-    , ratchet      = config.vendor.ratchet
-    , weatherIcons = config.vendor.weatherIcons
-    , fontAwesome  = config.vendor.fontAwesome
+const vendor           = config.vendor.folder
+    , { ratchet }      = config.vendor
+    , { weatherIcons } = config.vendor
+    , { fontAwesome }  = config.vendor
     ;
 
 // -- Local variables
@@ -53,7 +53,9 @@ gulp.task('copy-font-awesome', function() {
 
 // Extract vendor JS and CSS files:
 gulp.task('vendor', function(callback) {
-  runSequence('remove-vendors',
+  runSequence(
+    'remove-vendors',
     ['copy-ratchet', 'copy-weather-icons', 'copy-font-awesome'],
-    callback);
+    callback,
+  );
 });

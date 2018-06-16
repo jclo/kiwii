@@ -1,14 +1,14 @@
-/* eslint one-var: 0 */
+/* eslint one-var: 0, semi-style: 0 */
 
 // -- Node modules
 
 // -- Local modules
 
 // -- Local constants
-const name    = require('../package.json').name
-    , release = require('../package.json').version
-    , source  = './public'
-    , dist    = './_dist'
+const { name } = require('../package.json')
+    , release  = require('../package.json').version
+    , source   = './public'
+    , dist     = './_dist'
     ;
 
 
@@ -26,6 +26,23 @@ module.exports = {
   browserify: {
     app: `${source}/js/main.js`,
     debug: false,
+  },
+  babel: {
+    presets: [
+      ['env', {
+        targets: {
+          browsers: ['last 2 versions', 'ie 9'],
+        },
+      }],
+    ],
+    plugins: [
+      'transform-react-jsx',
+    ],
+    env: {
+      test: {
+        plugins: [],
+      },
+    },
   },
 
   // Specific to `vendor` task:
@@ -69,7 +86,7 @@ module.exports = {
       ` * ${name} v${release}`,
       ' *',
       ` * ${name} is a ...`,
-      ' * Copyright (c) 2017 Jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr).',
+      ' * Copyright (c) 2018 Jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr).',
       ' * Released under the MIT license. You may obtain a copy of the License',
       ' * at: http://www.opensource.org/licenses/mit-license.php).',
       ' *',
@@ -87,7 +104,7 @@ module.exports = {
       ` * ${name} v${release}`,
       ' *',
       ` * ${name} is a ...`,
-      ' * Copyright (c) 2017 Jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr).',
+      ' * Copyright (c) 2018 Jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr).',
       ' * Released under the MIT license. You may obtain a copy of the License',
       ' * at: http://www.opensource.org/licenses/mit-license.php).',
       ' *',

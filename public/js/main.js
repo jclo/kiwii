@@ -1,5 +1,5 @@
 /* global StatusBar */
-/* eslint no-new: 0 */
+/* eslint no-new: 0, semi-style: 0 */
 
 // -- Vendor modules
 import Backbone from 'backbone';
@@ -21,7 +21,7 @@ import config from './config';
 Backbone.$ = $;
 
 // -- Variables
-const level = config.logger.level
+const { level } = config.logger
     ;
 
 // -- Main section

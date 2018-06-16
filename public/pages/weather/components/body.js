@@ -12,7 +12,7 @@ import React from 'react';
 export default React.createClass({
 
   render() {
-    const options = this.props.options;
+    const { options } = this.props;
     const background = {
       backgroundImage: `url(${options.url})`,
       backgroundColor: 'transparent',

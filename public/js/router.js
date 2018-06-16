@@ -1,5 +1,5 @@
 /* global */
-/* eslint one-var: 0 */
+/* eslint one-var: 0, semi-style: 0 */
 
 // -- Vendor modules
 import Backbone from 'backbone';
@@ -17,7 +17,7 @@ import log from '../lib/logger';
 import config from './config';
 
 // -- Variables
-const level            = config.logger.level
+const { level }        = config.logger
     , mainc            = Radio.channel('mainc')
     , urlHistory       = []
     , menuShiftDelay   = 1000

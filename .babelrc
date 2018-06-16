@@ -1,4 +1,15 @@
 {
-  "presets": ["latest"],
-  "plugins": ["transform-react-jsx"]
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie 9"]
+      },
+      "test": {
+        "plugins": []
+      }
+    }]
+  ],
+  "plugins": [
+    "transform-react-jsx"
+  ]
 }

@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.4.1 (June 16, 2018)
+
+  * Updated the dependencies,
+  * ...,
+
+
 ### 0.4 (June 15, 2017)
 
   * Reworked the build scripts and removed Bower dependencies,

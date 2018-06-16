@@ -1,12 +1,12 @@
 /* eslint one-var: 0, prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0 */
-/* eslint strict: 0 */
+/* eslint strict: 0, semi-style: 0 */
 
 'use strict';
 
 // -- Node modules
 const gulp     = require('gulp')
     , connect  = require('gulp-connect')
-    , open     = require('open')
+    , open     = require('opn')
     ;
 
 // -- Local modules
@@ -14,8 +14,8 @@ const config = require('./config')
   ;
 
 // -- Local constants
-const source = config.source
-    , dist   = config.dist
+const { source } = config
+    , { dist }   = config
 
     ;
 
