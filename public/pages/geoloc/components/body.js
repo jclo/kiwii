@@ -1,3 +1,5 @@
+/* eslint */
+
 // -- Vendor modules
 import React from 'react';
 
@@ -6,7 +8,7 @@ import React from 'react';
 // -- Variables
 
 // -- Main section
-export default React.createClass({
+export default class extends React.Component {
   render() {
     return (
       <div>
@@ -16,5 +18,5 @@ export default React.createClass({
         </p>
       </div>
     );
-  },
-});
+  }
+}

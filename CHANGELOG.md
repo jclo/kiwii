@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.5.0 (June 16, 2018)
+
+  * Moved to React 16.x and replaced React.createClass by extends React.Component,
+  * ...,
+
+
 ### 0.4.1 (June 16, 2018)
 
   * Updated the dependencies,

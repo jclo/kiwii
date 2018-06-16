@@ -1,5 +1,5 @@
 /* global */
-/* eslint max-len: [1, 110] */
+/* eslint class-methods-use-this: 0, max-len: [1, 110] */
 
 // -- Vendor modules
 import React from 'react';
@@ -9,8 +9,7 @@ import React from 'react';
 // -- Variables
 
 // -- Main section
-export default React.createClass({
-
+export default class extends React.Component {
   render() {
     const { options } = this.props;
     const background = {
@@ -34,5 +33,5 @@ export default React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}

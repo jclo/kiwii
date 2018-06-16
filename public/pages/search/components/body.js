@@ -1,3 +1,5 @@
+/* eslint class-methods-use-this: 0 */
+
 // -- Vendor modules
 import React from 'react';
 
@@ -6,7 +8,7 @@ import React from 'react';
 // -- Variables
 
 // -- Main section
-export default React.createClass({
+export default class extends React.Component {
   render() {
     return (
       <form className={'content-padded'}>
@@ -16,5 +18,5 @@ export default React.createClass({
         <button className={'btn btn-positive btn-block'}>Choose existing</button>
       </form>
     );
-  },
-});
+  }
+}

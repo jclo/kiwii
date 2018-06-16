@@ -1,3 +1,5 @@
+/* eslint */
+
 // -- Vendor modules
 import React from 'react';
 
@@ -6,8 +8,7 @@ import React from 'react';
 // -- Variables
 
 // -- Main section
-export default React.createClass({
-
+export default class extends React.Component {
   render() {
     return (
       <header className={`bar bar-nav ${this.props.menu}`}>
@@ -15,5 +16,5 @@ export default React.createClass({
         <h1 className={'title'}>{this.props.title}</h1>
       </header>
     );
-  },
-});
+  }
+}

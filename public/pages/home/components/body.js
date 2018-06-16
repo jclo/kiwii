@@ -1,5 +1,5 @@
 /* global */
-/* eslint max-len: [2, 120] */
+/* eslint class-methods-use-this: 0, max-len: [2, 120] */
 
 // -- Vendor modules
 import React from 'react';
@@ -9,7 +9,7 @@ import React from 'react';
 // -- Variables
 
 // -- Main section
-export default React.createClass({
+export default class extends React.Component {
   render() {
     return (
       <div className={'home'}>
@@ -27,5 +27,5 @@ export default React.createClass({
         </p>
       </div>
     );
-  },
-});
+  }
+}
